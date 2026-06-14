@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Dwyer Interiors — Project Board (preview)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#F4EEE2;--bone-2:#FBF7EE;--card:#FCFAF4;
+    --ink:#2C2722;--muted:#6E655A;--faint:#9A9081;
+    --brass:#A97E45;--sage:#7E9067;--terra:#C0674A;--blue:#5E7A8C;
+    --line:#E6DCCB;--line-2:#D8CCB6;
+    --serif:'Cormorant Garamond','Iowan Old Style',Palatino,Georgia,serif;
+    --sans:'Outfit',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  body{font-family:var(--sans);background:var(--bone);color:var(--ink);font-weight:300;font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;padding:0 0 70px;}
+  .wrap{max-width:860px;margin:0 auto;padding:30px 22px;}
+  .crest{font-family:var(--serif);font-size:13px;letter-spacing:.4em;text-transform:uppercase;color:var(--brass);}
+  .ribbon{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-top:4px;}
+  h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,7vw,46px);line-height:1.08;margin-top:12px;}
+  .sub{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--muted);margin-top:4px;}
+  .summary{display:flex;gap:22px;flex-wrap:wrap;margin:18px 0 4px;}
+  .stat{font-family:var(--serif);}
+  .stat b{font-size:26px;font-weight:500;}
+  .stat span{font-family:var(--sans);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);display:block;}
+
+  .h2{font-family:var(--serif);font-weight:500;font-size:24px;margin:38px 0 14px;display:flex;align-items:center;gap:12px;}
+  .h2:before{content:'';width:22px;height:1px;background:var(--line-2);}
+
+  /* vendors */
+  .vendors{display:flex;gap:10px;flex-wrap:wrap;}
+  .vchip{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:13px 17px;min-width:130px;}
+  .vchip .vn{font-family:var(--serif);font-size:20px;color:var(--ink);}
+  .vchip .vc{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brass);margin-top:3px;}
+
+  /* voice card */
+  .voice{display:flex;align-items:center;gap:16px;background:linear-gradient(180deg,var(--bone-2),var(--card));border:1px solid var(--line-2);border-radius:10px;padding:18px 20px;margin-top:14px;}
+  .mic{flex:none;width:46px;height:46px;border-radius:50%;background:var(--terra);display:flex;align-items:center;justify-content:center;}
+  .mic span{width:14px;height:14px;border-radius:50%;background:var(--bone-2);}
+  .voice .vt{font-family:var(--serif);font-style:italic;font-size:21px;color:var(--ink);}
+  .voice .vh{font-size:14px;color:var(--muted);margin-top:2px;}
+
+  /* board groups */
+  .group{margin-top:24px;}
+  .glabel{display:flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:11px;}
+  .gdot{width:9px;height:9px;border-radius:50%;}
+  .d-spec{background:var(--faint);}.d-ord{background:var(--brass);}.d-bo{background:var(--terra);}.d-ship{background:var(--blue);}.d-done{background:var(--sage);}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;}
+  .item{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:14px 16px;position:relative;overflow:hidden;}
+  .item:before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
+  .item.spec:before{background:var(--faint);}.item.ord:before{background:var(--brass);}.item.bo:before{background:var(--terra);}.item.ship:before{background:var(--blue);}.item.done:before{background:var(--sage);}
+  .iv{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--brass);}
+  .it{font-family:var(--serif);font-size:21px;line-height:1.2;margin:3px 0 6px;}
+  .im{font-size:14px;color:var(--muted);}
+  .istate{font-size:13px;color:var(--faint);margin-top:7px;font-style:italic;}
+
+  .note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--sage);border-radius:4px;padding:22px 24px;margin-top:34px;}
+  .note h3{font-family:var(--serif);font-weight:500;font-size:23px;margin-bottom:8px;}
+  .note p{font-size:17px;color:var(--ink);line-height:1.7;}
+  .note .pin{color:var(--terra);font-style:italic;}
+
+  .foot{text-align:center;margin-top:40px;padding-top:22px;border-top:1px solid var(--line);}
+  .foot .big{font-family:var(--serif);font-size:24px;color:var(--ink);}
+  .foot p{font-size:14px;color:var(--faint);margin-top:6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="crest">Dwyer Interiors</div>
+  <div class="ribbon">A preview — what your workspace could look like</div>
+  <h1>Memorial Surgery Center</h1>
+  <div class="sub">Healthcare &middot; 6,400 sf &middot; reception, pre-op, two ORs, recovery</div>
+
+  <div class="summary">
+    <div class="stat"><b>22</b><span>items specified</span></div>
+    <div class="stat"><b>9</b><span>ordered</span></div>
+    <div class="stat"><b>2</b><span>backordered</span></div>
+    <div class="stat"><b>5</b><span>installed</span></div>
+  </div>
+
+  <div class="h2">Vendors on this project</div>
+  <div class="vendors">
+    <div class="vchip"><span class="vn">Steelcase</span><span class="vc">Catalog &rsaquo;</span></div>
+    <div class="vchip"><span class="vn">Herman Miller</span><span class="vc">Catalog &rsaquo;</span></div>
+    <div class="vchip"><span class="vn">Mannington</span><span class="vc">Catalog &rsaquo;</span></div>
+    <div class="vchip"><span class="vn">Maharam</span><span class="vc">Catalog &rsaquo;</span></div>
+    <div class="vchip"><span class="vn">Sherwin-Williams</span><span class="vc">Catalog &rsaquo;</span></div>
+  </div>
+
+  <div class="voice">
+    <div class="mic"><span></span></div>
+    <div>
+      <div class="vt">&ldquo;Add the Steelcase Series 1 chairs to Memorial — twenty-four.&rdquo;</div>
+      <div class="vh">Talk through a catalog and pick items straight onto the board. No typing.</div>
+    </div>
+  </div>
+
+  <div class="h2">The board &mdash; everything, at a glance</div>
+
+  <div class="group">
+    <div class="glabel"><span class="gdot d-spec"></span>Specified &mdash; chosen, not yet ordered</div>
+    <div class="cards">
+      <div class="item spec"><div class="iv">Maharam</div><div class="it">Panel fabric &mdash; waiting room</div><div class="im">Mode, &lsquo;Beach&rsquo; &middot; 40 yds</div><div class="istate">Awaiting your OK to order</div></div>
+      <div class="item spec"><div class="iv">Sherwin-Williams</div><div class="it">Wall paint &mdash; corridors</div><div class="im">SW 7036 Accessible Beige &middot; 12 gal</div><div class="istate">Awaiting your OK to order</div></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="glabel"><span class="gdot d-ord"></span>Ordered &mdash; PO sent, in production</div>
+    <div class="cards">
+      <div class="item ord"><div class="iv">Steelcase</div><div class="it">Series 1 task chairs</div><div class="im">Qty 24 &middot; PO #4471 &middot; rep: Dana</div><div class="istate">Ordered Jun 9 &middot; ETA Jul 2</div></div>
+      <div class="item ord"><div class="iv">Herman Miller</div><div class="it">Reception lounge seating</div><div class="im">Qty 6 &middot; PO #4472 &middot; rep: Marcus</div><div class="istate">Ordered Jun 9 &middot; ETA Jul 8</div></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="glabel"><span class="gdot d-bo"></span>Backordered &mdash; needs a watch</div>
+    <div class="cards">
+      <div class="item bo"><div class="iv">Mannington</div><div class="it">LVT flooring &mdash; OR suite</div><div class="im">Qty 1,800 sf &middot; PO #4468</div><div class="istate">Backordered &middot; revised ETA Jul 21</div></div>
+      <div class="item bo"><div class="iv">Steelcase</div><div class="it">Overbed tables</div><div class="im">Qty 8 &middot; PO #4470</div><div class="istate">Backordered &middot; rep checking stock</div></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="glabel"><span class="gdot d-ship"></span>In transit</div>
+    <div class="cards">
+      <div class="item ship"><div class="iv">Herman Miller</div><div class="it">Casework &mdash; nurse station</div><div class="im">Qty 1 lot &middot; PO #4465</div><div class="istate">Shipped Jun 11 &middot; arrives Jun 16</div></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="glabel"><span class="gdot d-done"></span>Delivered &amp; installed</div>
+    <div class="cards">
+      <div class="item done"><div class="iv">Mannington</div><div class="it">Rubber base &mdash; whole suite</div><div class="im">Installed Jun 6</div></div>
+      <div class="item done"><div class="iv">Sherwin-Williams</div><div class="it">Primer &mdash; all walls</div><div class="im">Installed Jun 4</div></div>
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>How the orders go out</h3>
+    <p>POs get drafted for you and sent digitally — so the order, the date, the price, and the tracking all live here, on the board. And you still <strong>call Dana and Marcus</strong> like you always have; the relationships don't change, the paperwork just stops eating your nights. <span class="pin">Nothing is ever ordered without your sign-off.</span></p>
+  </div>
+
+  <div class="foot">
+    <div class="big">A sketch of where we're headed.</div>
+    <p>Sample data, made to show the idea. Tell Whitt what's wrong or missing and it changes.</p>
+  </div>
+
+</div>
+</body>
+</html>
