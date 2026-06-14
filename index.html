@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Dwyer Interiors — A Conversation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#F4EEE2; --bone-2:#FBF7EE; --card:#FCFAF4;
+    --ink:#2C2722; --muted:#6E655A; --faint:#9A9081;
+    --brass:#A97E45; --sage:#8C9A78; --terra:#C0674A;
+    --line:#E6DCCB; --line-2:#D8CCB6;
+    --serif:'Cormorant Garamond','Iowan Old Style',Palatino,Georgia,serif;
+    --sans:'Outfit',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--sans);background:var(--bone);color:var(--ink);font-weight:300;font-size:20px;line-height:1.7;-webkit-font-smoothing:antialiased;padding:0 0 130px;}
+  .wrap{max-width:740px;margin:0 auto;padding:0 26px;}
+
+  /* COVER */
+  .cover{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 30px;background:radial-gradient(120% 80% at 50% 0%,var(--bone-2),var(--bone) 70%);}
+  .crest{font-family:var(--serif);font-size:15px;letter-spacing:.42em;text-transform:uppercase;color:var(--brass);margin-bottom:26px;}
+  .mark{font-family:var(--serif);font-weight:500;font-size:clamp(46px,12vw,84px);line-height:1.02;}
+  .mark .it{font-style:italic;color:var(--brass);}
+  .estd{font-family:var(--serif);font-style:italic;font-size:21px;color:var(--muted);margin-top:14px;}
+  .rule{width:54px;height:1px;background:var(--line-2);margin:34px auto;}
+  .invite{font-family:var(--serif);font-size:clamp(26px,6.4vw,38px);line-height:1.3;max-width:18ch;margin:0 auto 22px;}
+  .frm{font-size:17px;color:var(--muted);max-width:32ch;margin:0 auto 38px;line-height:1.75;}
+  .begin{font-family:var(--sans);font-weight:400;font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:var(--bone-2);background:var(--ink);border:none;padding:18px 42px;border-radius:2px;cursor:pointer;}
+  .begin:active{opacity:.8;}
+  .scrollhint{margin-top:34px;font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);}
+
+  /* BODY */
+  .note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--brass);padding:26px 28px;margin:34px 0;border-radius:3px;}
+  .note .from{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--brass);margin-bottom:8px;}
+  .note p{font-size:18px;line-height:1.78;}
+  section.part{padding-top:18px;margin-top:44px;border-top:1px solid var(--line);}
+  section.part:first-of-type{border-top:none;}
+  .pnum{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--brass);}
+  .ptitle{font-family:var(--serif);font-weight:500;font-size:clamp(28px,6vw,36px);line-height:1.12;margin-top:2px;}
+  .pintro{font-size:17px;color:var(--muted);margin:10px 0 4px;line-height:1.7;}
+  .speak{display:inline-flex;align-items:center;gap:9px;margin:16px 0 4px;font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--brass);background:none;border:1px solid var(--line-2);padding:10px 18px;border-radius:40px;cursor:pointer;}
+  .speak:active{background:var(--bone-2);}
+  .q{margin:24px 0;}
+  .q .qt{font-size:21px;line-height:1.6;font-weight:400;}
+  .q .qt .lead{font-family:var(--serif);font-style:italic;color:var(--brass);font-size:22px;margin-right:5px;}
+  .q .hint{font-size:16px;color:var(--faint);margin-top:6px;font-style:italic;}
+  .sketch{font-size:16px;color:var(--sage);margin-top:14px;font-style:italic;}
+  .closing{text-align:center;padding:56px 20px 10px;margin-top:48px;border-top:1px solid var(--line);}
+  .closing .big{font-family:var(--serif);font-size:30px;line-height:1.3;max-width:22ch;margin:0 auto 14px;}
+  .closing p{font-size:16px;color:var(--muted);max-width:34ch;margin:0 auto;}
+  .hidden{display:none;}
+
+  /* RECORDER BAR */
+  .recbar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(252,250,244,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line-2);padding:14px 20px calc(14px + env(safe-area-inset-bottom));}
+  .recinner{max-width:740px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center;}
+  .recbtn{display:inline-flex;align-items:center;gap:11px;font-family:var(--sans);font-size:16px;letter-spacing:.04em;color:var(--bone-2);background:var(--terra);border:none;padding:15px 26px;border-radius:44px;cursor:pointer;}
+  .recbtn.on{background:#9c3f2a;}
+  .dot{width:13px;height:13px;border-radius:50%;background:var(--bone-2);}
+  .recbtn.on .dot{animation:pulse 1.1s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.25;}}
+  .rtime{font-family:var(--sans);font-size:16px;color:var(--muted);min-width:52px;}
+  .rsmall{font-family:var(--sans);font-size:15px;letter-spacing:.03em;color:var(--ink);background:var(--card);border:1px solid var(--line-2);padding:13px 20px;border-radius:44px;cursor:pointer;}
+  .rstatus{flex-basis:100%;text-align:center;font-size:14px;color:var(--muted);margin-top:4px;}
+  @media print{.cover,.begin,.speak,.recbar,.scrollhint{display:none!important;}body{padding:0;}}
+</style>
+</head>
+<body>
+
+<header class="cover" id="cover">
+  <div class="crest">Dwyer Interiors</div>
+  <div class="mark">Dwyer <span class="it">Interiors</span></div>
+  <div class="estd">Commercial Interior Design &middot; Est. 1978</div>
+  <div class="rule"></div>
+  <div class="invite">A conversation about your life's work.</div>
+  <div class="frm">No typing, no computer. Just tap record and talk — at your pace, as much or as little as you like.</div>
+  <button class="begin" onclick="begin()">Begin when you're ready</button>
+  <div class="scrollhint">Read along &middot; talk it through &middot; come and go anytime</div>
+</header>
+
+<main class="wrap hidden" id="main">
+
+  <div class="note">
+    <div class="from">A note, Mom —</div>
+    <p>I'm not trying to change how you design, or put your name on billboards. I just want to find the boring, repetitive parts that eat your nights at the desk — and let a system handle those, with you approving everything — so you can say yes to more of the work you actually want. No typing: tap the red button at the bottom, talk through whatever you feel like, and pause whenever. If it's easier to sketch something, draw it and we'll snap a photo. We'll do a little tonight and finish at the office.</p>
+  </div>
+
+  <section class="part" id="p1">
+    <div class="pnum">One</div><div class="ptitle">Two quick lists</div>
+    <div class="pintro">The fastest way to get this moving — even rough is perfect.</div>
+    <button class="speak" data-target="p1">&#9658; Read this part to me</button>
+    <div class="q"><div class="qt"><span class="lead">i.</span>The jobs you turned down or handed off this past year — who they were, what kind of project, roughly what it was worth, and the real reason you passed.</div>
+      <div class="hint">No time &middot; no one to trust with it &middot; didn't want to travel &middot; didn't want to be away from home</div></div>
+    <div class="q"><div class="qt"><span class="lead">ii.</span>Your top ten go-to vendors — names, what you order from each, and how you order it (email, a portal, or a phone call).</div></div>
+  </section>
+
+  <section class="part" id="p2">
+    <div class="pnum">Two</div><div class="ptitle">One real project, start to finish</div>
+    <div class="pintro">Pick a recent healthcare job — a surgery center, doctor's office, testing facility — and walk me through every step.</div>
+    <button class="speak" data-target="p2">&#9658; Read this part to me</button>
+    <div class="q"><div class="qt"><span class="lead">1.</span>First contact &rarr; site visit &amp; measurements &rarr; the regulatory and brand specs (HIPAA, separate ventilation, code) &rarr; sourcing and selecting &rarr; vendor POs &rarr; tracking orders and backorders &rarr; delivery &rarr; install and placement &rarr; punch list &rarr; billing in QuickBooks.</div>
+      <div class="hint">For each step: who does it, how long it takes, and is it in your head or written down?</div>
+      <div class="sketch">&#9998; If it's easier, draw the flow on paper or the iPad and we'll capture it.</div></div>
+    <div class="q"><div class="qt"><span class="lead">2.</span>Which steps could <em>only you</em> do — and which are really just a process someone you trusted could follow?</div></div>
+  </section>
+
+  <section class="part" id="p3">
+    <div class="pnum">Three</div><div class="ptitle">Where your evenings go</div>
+    <button class="speak" data-target="p3">&#9658; Read this part to me</button>
+    <div class="q"><div class="qt"><span class="lead">3.</span>When you're at your desk at night — what are you actually <em>doing</em>? Drawing, POs, chasing vendors, spec sheets, reconciling invoices?</div></div>
+    <div class="q"><div class="qt"><span class="lead">4.</span>What's the single most repetitive thing you do on <em>every</em> project?</div></div>
+  </section>
+
+  <section class="part" id="p4">
+    <div class="pnum">Four</div><div class="ptitle">The ceiling</div>
+    <div class="pintro">Why the firm stayed the size it stayed.</div>
+    <button class="speak" data-target="p4">&#9658; Read this part to me</button>
+    <div class="q"><div class="qt"><span class="lead">5.</span>How much work have you turned away over the years — and the honest reason each time?</div></div>
+    <div class="q"><div class="qt"><span class="lead">6.</span>When you tried hiring, or thought about it — what went wrong, or why didn't you?</div></div>
+  </section>
+
+  <section class="part" id="p5">
+    <div class="pnum">Five</div><div class="ptitle">What's only in your head</div>
+    <div class="pintro">This part is the treasure — it's what we save first.</div>
+    <button class="speak" data-target="p5">&#9658; Read this part to me</button>
+    <div class="q"><div class="qt"><span class="lead">7.</span>The HIPAA and code rules, the brand standards, your sourcing rules, your go-to vendors, your instinct for placement — how much of that is written down <em>anywhere</em>, versus only in your head?</div></div>
+    <div class="q"><div class="qt"><span class="lead">8.</span>If you got hit by a bus tomorrow — what would the firm simply not be able to do?</div>
+      <div class="hint">That list is exactly what we capture into the system first.</div></div>
+  </section>
+
+  <section class="part" id="p6">
+    <div class="pnum">Six</div><div class="ptitle">What you'd hand off — if you trusted it</div>
+    <button class="speak" data-target="p6">&#9658; Read this part to me</button>
+    <div class="q"><div class="qt"><span class="lead">9.</span>If a tool could draft your vendor POs from a product list, keep a live ordered/shipped/backordered tracker, turn a sketch into a presentable option, and tie your records to QuickBooks — which would you hand over <em>first</em>?</div></div>
+    <div class="q"><div class="qt"><span class="lead">10.</span>What would you need to <em>see and approve</em> before anything went out under your name?</div>
+      <div class="hint">Nothing ever leaves without your sign-off — that's a promise built into it.</div></div>
+    <div class="q"><div class="qt"><span class="lead">11.</span>If you could duplicate yourself for one part of the job, which part? And which part is sacred — the part that must always be <em>you</em>?</div></div>
+  </section>
+
+  <div class="closing">
+    <div class="big">There's no rush. Talk as much or as little as you like.</div>
+    <p>Tap stop when you're done, save the recording, and Whitt will take it from there.</p>
+  </div>
+</main>
+
+<!-- RECORDER -->
+<div class="recbar hidden" id="recbar">
+  <div class="recinner">
+    <button class="recbtn" id="recBtn" onclick="toggleRec()"><span class="dot"></span><span id="recLabel">Tap to record</span></button>
+    <span class="rtime" id="recTime">0:00</span>
+    <button class="rsmall hidden" id="playBtn" onclick="playBack()">&#9658; Play back</button>
+    <a class="rsmall hidden" id="saveBtn" download="dwyer-conversation.m4a">&#8595; Save recording</a>
+    <div class="rstatus" id="recStatus"></div>
+  </div>
+</div>
+
+<script>
+  function begin(){
+    document.getElementById('main').classList.remove('hidden');
+    document.getElementById('recbar').classList.remove('hidden');
+    document.getElementById('p1').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  // read aloud — uses the iPad's own voice
+  function pickVoice(){
+    var v=window.speechSynthesis.getVoices();
+    var pref=['Samantha','Karen','Serena','Allison','Ava','Google US English'];
+    for(var i=0;i<pref.length;i++){var f=v.find(function(x){return x.name.indexOf(pref[i])>-1;});if(f)return f;}
+    return v.find(function(x){return x.lang&&x.lang.indexOf('en')===0;})||v[0];
+  }
+  document.querySelectorAll('.speak').forEach(function(b){
+    b.addEventListener('click',function(){
+      if(!('speechSynthesis' in window)){return;}
+      var sec=document.getElementById(b.getAttribute('data-target'));
+      var title=sec.querySelector('.ptitle').textContent;
+      var qs=[];sec.querySelectorAll('.qt').forEach(function(q){qs.push(q.textContent.trim().replace(/\s+/g,' '));});
+      window.speechSynthesis.cancel();
+      var u=new SpeechSynthesisUtterance(title+'. '+qs.join('. '));
+      var voice=pickVoice();if(voice)u.voice=voice;
+      u.rate=0.92;window.speechSynthesis.speak(u);
+    });
+  });
+
+  // recorder
+  var mediaRecorder,chunks=[],stream,startT,timer,blobURL;
+  var recBtn=document.getElementById('recBtn'),recLabel=document.getElementById('recLabel'),
+      recTime=document.getElementById('recTime'),recStatus=document.getElementById('recStatus'),
+      playBtn=document.getElementById('playBtn'),saveBtn=document.getElementById('saveBtn');
+
+  function fmt(s){var m=Math.floor(s/60);var ss=s%60;return m+':'+(ss<10?'0':'')+ss;}
+  function tick(){recTime.textContent=fmt(Math.floor((Date.now()-startT)/1000));}
+
+  function toggleRec(){
+    if(mediaRecorder&&mediaRecorder.state==='recording'){
+      mediaRecorder.stop();clearInterval(timer);
+      recBtn.classList.remove('on');recLabel.textContent='Tap to record';
+      recStatus.textContent='Saved below — tap Play back to hear it, or Save recording.';
+      return;
+    }
+    if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||typeof MediaRecorder==='undefined'){
+      recStatus.textContent='This browser can’t record in-page — just record on the phone instead.';return;
+    }
+    navigator.mediaDevices.getUserMedia({audio:true}).then(function(s){
+      stream=s;chunks=[];
+      try{mediaRecorder=new MediaRecorder(stream);}catch(e){mediaRecorder=new MediaRecorder(stream,{mimeType:'audio/mp4'});}
+      mediaRecorder.ondataavailable=function(e){if(e.data&&e.data.size>0)chunks.push(e.data);};
+      mediaRecorder.onstop=function(){
+        var type=(chunks[0]&&chunks[0].type)||'audio/mp4';
+        var blob=new Blob(chunks,{type:type});
+        if(blobURL)URL.revokeObjectURL(blobURL);
+        blobURL=URL.createObjectURL(blob);
+        saveBtn.href=blobURL;
+        saveBtn.download='dwyer-conversation'+(type.indexOf('webm')>-1?'.webm':'.m4a');
+        playBtn.classList.remove('hidden');saveBtn.classList.remove('hidden');
+        if(stream)stream.getTracks().forEach(function(t){t.stop();});
+      };
+      mediaRecorder.start();
+      startT=Date.now();tick();timer=setInterval(tick,1000);
+      recBtn.classList.add('on');recLabel.textContent='Recording — tap to stop';
+      recStatus.textContent='Listening… talk through the questions above at your own pace.';
+    }).catch(function(){
+      recStatus.textContent='Microphone is blocked. In Safari tap “aA” in the address bar → Website Settings → allow Microphone — or just record on the phone.';
+    });
+  }
+  function playBack(){if(blobURL){var a=new Audio(blobURL);a.play();}}
+</script>
+</body>
+</html>
