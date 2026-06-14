@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Dwyer Interiors — The Catalog (preview)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#F4EEE2;--bone-2:#FBF7EE;--card:#FCFAF4;
+    --ink:#2C2722;--muted:#6E655A;--faint:#9A9081;
+    --brass:#A97E45;--sage:#7E9067;--terra:#C0674A;--blue:#5E7A8C;
+    --line:#E6DCCB;--line-2:#D8CCB6;
+    --serif:'Cormorant Garamond','Iowan Old Style',Palatino,Georgia,serif;
+    --sans:'Outfit',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  a{color:inherit;text-decoration:none;}
+  body{font-family:var(--sans);background:var(--bone);color:var(--ink);font-weight:300;font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;padding:0 0 60px;}
+  .topnav{position:sticky;top:0;z-index:60;display:flex;flex-wrap:wrap;justify-content:center;gap:6px;background:rgba(251,247,238,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:11px 14px;}
+  .topnav a{font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 16px;border-radius:30px;}
+  .topnav a.on{color:var(--brass);background:var(--bone);}
+  .wrap{max-width:900px;margin:0 auto;padding:28px 22px;}
+  .crest{font-family:var(--serif);font-size:13px;letter-spacing:.4em;text-transform:uppercase;color:var(--brass);}
+  h1{font-family:var(--serif);font-weight:500;font-size:clamp(34px,8vw,52px);line-height:1.05;margin-top:6px;}
+  .lede{font-family:var(--serif);font-style:italic;font-size:21px;color:var(--muted);margin-top:6px;max-width:36ch;}
+
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 6px;}
+  .f{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:30px;padding:9px 16px;}
+  .f.on{color:var(--brass);border-color:var(--line-2);background:var(--bone-2);}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-top:18px;}
+  .piece{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+  .pimg{height:208px;display:flex;align-items:flex-end;justify-content:space-between;padding:12px 14px;}
+  .pimg .tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.92);background:rgba(44,39,34,.34);border-radius:30px;padding:5px 11px;}
+  .pimg .three{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#2C2722;background:rgba(255,255,255,.85);border-radius:30px;padding:5px 11px;}
+  .t-chair{background:linear-gradient(135deg,#c3a888,#8a7155);}
+  .t-soft{background:linear-gradient(135deg,#b7c1ab,#84967a);}
+  .t-floor{background:linear-gradient(135deg,#cbb79b,#9b8160);}
+  .t-wood{background:linear-gradient(135deg,#caa178,#8a5e3b);}
+  .t-paint{background:linear-gradient(135deg,#d7ccba,#b0a48c);}
+  .t-fab{background:linear-gradient(135deg,#cbb0b6,#9c7d84);}
+  .t-light{background:linear-gradient(135deg,#d8c79a,#b39a5f);}
+  .t-desk{background:linear-gradient(135deg,#b9a890,#8c7a62);}
+  .pbody{padding:15px 18px 18px;}
+  .pv{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--brass);}
+  .pn{font-family:var(--serif);font-size:25px;line-height:1.12;margin:2px 0 4px;}
+  .pspec{font-size:14px;color:var(--muted);}
+  .pacts{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px;}
+  .pact{font-size:13px;letter-spacing:.04em;border:1px solid var(--line-2);border-radius:30px;padding:9px 15px;color:var(--ink);}
+  .pact.go{background:var(--brass);color:var(--bone-2);border-color:var(--brass);}
+
+  .foot{text-align:center;margin-top:40px;padding-top:22px;border-top:1px solid var(--line);}
+  .foot .big{font-family:var(--serif);font-size:24px;}
+  .foot p{font-size:14px;color:var(--faint);margin-top:6px;max-width:40ch;margin-left:auto;margin-right:auto;}
+</style>
+</head>
+<body>
+<nav class="topnav"><a href="index.html">Conversation</a><a href="home.html">Mission Control</a><a href="catalog.html" class="on">Catalog</a><a href="board.html">A Project</a></nav>
+<div class="wrap">
+
+  <div class="crest">Dwyer Interiors</div>
+  <h1>The Catalog</h1>
+  <div class="lede">Flip through it the way you flip through your magazines &mdash; but every piece is live, in 3D, and one tap from a project.</div>
+
+  <div class="filters">
+    <span class="f on">All vendors</span>
+    <span class="f">Steelcase</span>
+    <span class="f">Herman Miller</span>
+    <span class="f">Mannington</span>
+    <span class="f">Maharam</span>
+    <span class="f">Sherwin-Williams</span>
+  </div>
+
+  <div class="grid">
+
+    <div class="piece"><div class="pimg t-chair"><span class="tag">Photo</span><span class="three">&#9648; View in 3D</span></div>
+      <div class="pbody"><div class="pv">Steelcase</div><div class="pn">Series 1 task chair</div><div class="pspec">8 frame finishes &middot; 24 upholsteries &middot; healthcare-grade option</div>
+      <div class="pacts"><span class="pact go">Add to a project</span><span class="pact">3D / BIM model</span></div></div></div>
+
+    <div class="piece"><div class="pimg t-soft"><span class="tag">Photo</span><span class="three">&#9648; View in 3D</span></div>
+      <div class="pbody"><div class="pv">Herman Miller</div><div class="pn">Nemschoff lounge</div><div class="pspec">Cleanable seams &middot; moisture barrier &middot; reception-ready</div>
+      <div class="pacts"><span class="pact go">Add to a project</span><span class="pact">3D / BIM model</span></div></div></div>
+
+    <div class="piece"><div class="pimg t-floor"><span class="tag">Photo</span><span class="three">&#9648; View in 3D</span></div>
+      <div class="pbody"><div class="pv">Mannington</div><div class="pn">Aspecta LVT</div><div class="pspec">Slip-resistant &middot; 40+ woodgrains &middot; OR &amp; corridor rated</div>
+      <div class="pacts"><span class="pact go">Add to a project</span><span class="pact">3D / BIM model</span></div></div></div>
+
+    <div class="piece"><div class="pimg t-fab"><span class="tag">Swatch</span><span class="three">&#9648; Order a memo</span></div>
+      <div class="pbody"><div class="pv">Maharam</div><div class="pn">Mode panel textile</div><div class="pspec">38 colorways &middot; 100k double rubs &middot; antimicrobial</div>
+      <div class="pacts"><span class="pact go">Add to a project</span><span class="pact">Order swatch</span></div></div></div>
+
+    <div class="piece"><div class="pimg t-wood"><span class="tag">Photo</span><span class="three">&#9648; View in 3D</span></div>
+      <div class="pbody"><div class="pv">Herman Miller</div><div class="pn">Nurse-station casework</div><div class="pspec">Made to your dimensions &middot; solid-surface top</div>
+      <div class="pacts"><span class="pact go">Add to a project</span><span class="pact">3D / BIM model</span></div></div></div>
+
+    <div class="piece"><div class="pimg t-paint"><span class="tag">Color</span><span class="three">&#9648; See on a wall</span></div>
+      <div class="pbody"><div class="pv">Sherwin-Williams</div><div class="pn">SW 7036 Accessible Beige</div><div class="pspec">Scrubbable &middot; low-VOC &middot; healthcare palette</div>
+      <div class="pacts"><span class="pact go">Add to a project</span><span class="pact">Visualize on a wall</span></div></div></div>
+
+    <div class="piece"><div class="pimg t-light"><span class="tag">Photo</span><span class="three">&#9648; View in 3D</span></div>
+      <div class="pbody"><div class="pv">Steelcase</div><div class="pn">Overbed table</div><div class="pspec">Height-adjust &middot; antimicrobial laminate &middot; quiet casters</div>
+      <div class="pacts"><span class="pact go">Add to a project</span><span class="pact">3D / BIM model</span></div></div></div>
+
+    <div class="piece"><div class="pimg t-desk"><span class="tag">Photo</span><span class="three">&#9648; View in 3D</span></div>
+      <div class="pbody"><div class="pv">Herman Miller</div><div class="pn">Reception desk system</div><div class="pspec">ADA transaction top &middot; configurable &middot; cable-managed</div>
+      <div class="pacts"><span class="pact go">Add to a project</span><span class="pact">3D / BIM model</span></div></div></div>
+
+  </div>
+
+  <div class="foot">
+    <div class="big">Every vendor's line, in one lookbook.</div>
+    <p>Sample pieces &amp; placeholder images, made to show the idea. The real version pulls live photos and 3D/BIM models straight from each vendor's digital catalog.</p>
+  </div>
+
+</div>
+</body>
+</html>

@@ -21,6 +21,9 @@
   html{scroll-behavior:smooth;}
   body{font-family:var(--sans);background:var(--bone);color:var(--ink);font-weight:300;font-size:20px;line-height:1.7;-webkit-font-smoothing:antialiased;padding:0 0 130px;}
   .wrap{max-width:740px;margin:0 auto;padding:0 26px;}
+  .topnav{position:sticky;top:0;z-index:60;display:flex;flex-wrap:wrap;justify-content:center;gap:6px;background:rgba(251,247,238,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:11px 14px;}
+  .topnav a{font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:8px 16px;border-radius:30px;}
+  .topnav a.on{color:var(--brass);background:var(--bone);}
 
   /* COVER */
   .cover{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 30px;background:radial-gradient(120% 80% at 50% 0%,var(--bone-2),var(--bone) 70%);}
@@ -31,7 +34,7 @@
   .rule{width:54px;height:1px;background:var(--line-2);margin:34px auto;}
   .invite{font-family:var(--serif);font-size:clamp(26px,6.4vw,38px);line-height:1.3;max-width:18ch;margin:0 auto 22px;}
   .frm{font-size:17px;color:var(--muted);max-width:32ch;margin:0 auto 38px;line-height:1.75;}
-  .begin{font-family:var(--sans);font-weight:400;font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:var(--bone-2);background:var(--ink);border:none;padding:18px 42px;border-radius:2px;cursor:pointer;}
+  .begin{font-family:var(--sans);font-weight:400;font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:var(--bone-2);background:var(--brass);border:none;padding:18px 42px;border-radius:2px;cursor:pointer;}
   .begin:active{opacity:.8;}
   .scrollhint{margin-top:34px;font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);}
 
@@ -71,6 +74,8 @@
 </style>
 </head>
 <body>
+
+<nav class="topnav"><a href="index.html" class="on">Conversation</a><a href="home.html">Mission Control</a><a href="catalog.html">Catalog</a><a href="board.html">A Project</a></nav>
 
 <header class="cover" id="cover">
   <div class="crest">Dwyer Interiors</div>

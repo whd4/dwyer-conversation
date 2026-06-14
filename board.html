@@ -20,9 +20,11 @@
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
   a{color:inherit;text-decoration:none;}
   body{font-family:var(--sans);background:var(--bone);color:var(--ink);font-weight:300;font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;padding:0 0 120px;}
-  .wrap{max-width:860px;margin:0 auto;padding:30px 22px;}
-  .back{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--brass);}
-  .crest{font-family:var(--serif);font-size:13px;letter-spacing:.4em;text-transform:uppercase;color:var(--brass);margin-top:14px;}
+  .topnav{position:sticky;top:0;z-index:60;display:flex;flex-wrap:wrap;justify-content:center;gap:6px;background:rgba(251,247,238,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:11px 14px;}
+  .topnav a{font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 16px;border-radius:30px;}
+  .topnav a.on{color:var(--brass);background:var(--bone);}
+  .wrap{max-width:860px;margin:0 auto;padding:26px 22px;}
+  .crest{font-family:var(--serif);font-size:13px;letter-spacing:.4em;text-transform:uppercase;color:var(--brass);}
   h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,7vw,46px);line-height:1.08;margin-top:6px;}
   .sub{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--muted);margin-top:4px;}
   .summary{display:flex;gap:22px;flex-wrap:wrap;margin:18px 0 4px;}
@@ -35,61 +37,90 @@
   .spendline b{font-family:var(--serif);font-size:18px;font-weight:500;color:var(--ink);}
   .spendline .c{color:var(--terra);}
 
-  .h2{font-family:var(--serif);font-weight:500;font-size:24px;margin:36px 0 14px;display:flex;align-items:center;gap:12px;}
+  .crew{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px;}
+  .crew .cm{font-size:14px;color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:30px;padding:7px 14px;}
+  .crew .cm b{font-family:var(--serif);font-weight:500;color:var(--ink);font-size:16px;}
+
+  .h2{font-family:var(--serif);font-weight:500;font-size:24px;margin:34px 0 14px;display:flex;align-items:center;gap:12px;}
   .h2:before{content:'';width:22px;height:1px;background:var(--line-2);}
 
+  /* timeline */
+  .timeline{display:flex;gap:0;overflow-x:auto;padding-bottom:6px;}
+  .ms{flex:none;min-width:128px;position:relative;padding:18px 14px 0 0;}
+  .ms:before{content:'';position:absolute;top:5px;left:0;right:0;height:2px;background:var(--line-2);}
+  .ms .pt{position:absolute;top:0;left:0;width:11px;height:11px;border-radius:50%;background:var(--bone);border:2px solid var(--brass);}
+  .ms.done .pt{background:var(--sage);border-color:var(--sage);}
+  .ms.now .pt{background:var(--terra);border-color:var(--terra);}
+  .ms .dt{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);}
+  .ms .lb{font-family:var(--serif);font-size:18px;line-height:1.15;margin-top:2px;}
+
   .vendors{display:flex;gap:10px;flex-wrap:wrap;}
-  .vchip{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:13px 17px;min-width:130px;}
-  .vchip .vn{font-family:var(--serif);font-size:20px;color:var(--ink);}
+  .vchip{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:13px 17px;min-width:128px;}
+  .vchip .vn{font-family:var(--serif);font-size:20px;}
   .vchip .vc{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brass);margin-top:3px;}
 
   .voice{display:flex;align-items:center;gap:16px;background:linear-gradient(180deg,var(--bone-2),var(--card));border:1px solid var(--line-2);border-radius:10px;padding:18px 20px;margin-top:14px;}
   .mic{flex:none;width:46px;height:46px;border-radius:50%;background:var(--terra);display:flex;align-items:center;justify-content:center;}
   .mic span{width:14px;height:14px;border-radius:50%;background:var(--bone-2);}
-  .voice .vt{font-family:var(--serif);font-style:italic;font-size:21px;color:var(--ink);}
+  .voice .vt{font-family:var(--serif);font-style:italic;font-size:21px;}
   .voice .vh{font-size:14px;color:var(--muted);margin-top:2px;}
 
   .people{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;}
-  .person{display:block;background:var(--card);border:1px solid var(--line);border-radius:9px;padding:15px 17px;}
+  .person{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:15px 17px;}
   .person .pn{font-family:var(--serif);font-size:22px;}
   .person .pr{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--brass);margin-top:1px;}
-  .person .ph{display:inline-block;font-size:15px;color:var(--ink);margin-top:9px;border:1px solid var(--line-2);border-radius:30px;padding:7px 15px;}
+  .person .ph{display:inline-block;font-size:15px;margin-top:9px;border:1px solid var(--line-2);border-radius:30px;padding:7px 15px;}
   .person .last{font-size:14px;color:var(--faint);font-style:italic;margin-top:9px;line-height:1.5;}
 
   .group{margin-top:24px;}
   .glabel{display:flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:11px;}
   .gdot{width:9px;height:9px;border-radius:50%;}
   .d-spec{background:var(--faint);}.d-ord{background:var(--brass);}.d-bo{background:var(--terra);}.d-ship{background:var(--blue);}.d-done{background:var(--sage);}
-  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;}
-  .item{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:14px 16px;position:relative;overflow:hidden;}
-  .item:before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
-  .item.spec:before{background:var(--faint);}.item.ord:before{background:var(--brass);}.item.bo:before{background:var(--terra);}.item.ship:before{background:var(--blue);}.item.done:before{background:var(--sage);}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:12px;}
+  .item{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:0 0 14px;position:relative;overflow:hidden;}
+  .item .bd{padding:12px 16px 0;position:relative;}
+  .item .bd:before{content:'';position:absolute;left:0;top:0;bottom:-14px;width:3px;}
+  .item.spec .bd:before{background:var(--faint);}.item.ord .bd:before{background:var(--brass);}.item.bo .bd:before{background:var(--terra);}.item.ship .bd:before{background:var(--blue);}.item.done .bd:before{background:var(--sage);}
+  .thumb{height:96px;display:flex;align-items:flex-end;padding:9px 12px;}
+  .thumb span{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.9);}
+  .t-chair{background:linear-gradient(135deg,#c3a888,#8a7155);}
+  .t-soft{background:linear-gradient(135deg,#b7c1ab,#84967a);}
+  .t-floor{background:linear-gradient(135deg,#cbb79b,#9b8160);}
+  .t-wood{background:linear-gradient(135deg,#caa178,#8a5e3b);}
+  .t-paint{background:linear-gradient(135deg,#d7ccba,#b0a48c);}
+  .t-fab{background:linear-gradient(135deg,#cbb0b6,#9c7d84);}
   .iv{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--brass);}
   .it{font-family:var(--serif);font-size:21px;line-height:1.2;margin:3px 0 6px;}
   .im{font-size:14px;color:var(--muted);}
-  .istate{font-size:13px;color:var(--faint);margin-top:7px;font-style:italic;}
+  .iassign{font-size:13px;color:var(--sage);margin-top:7px;}
+  .istate{font-size:13px;color:var(--faint);margin-top:5px;font-style:italic;}
 
-  .note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--sage);border-radius:4px;padding:22px 24px;margin-top:34px;}
+  .notes{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--brass);border-radius:4px;padding:20px 22px;margin-top:14px;}
+  .notes h3{font-family:var(--serif);font-weight:500;font-size:22px;margin-bottom:8px;}
+  .notes li{list-style:none;font-size:16px;color:var(--ink);padding:5px 0 5px 18px;position:relative;}
+  .notes li:before{content:'\2014';position:absolute;left:0;color:var(--brass);}
+
+  .note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--sage);border-radius:4px;padding:22px 24px;margin-top:30px;}
   .note h3{font-family:var(--serif);font-weight:500;font-size:23px;margin-bottom:8px;}
-  .note p{font-size:17px;color:var(--ink);line-height:1.7;}
+  .note p{font-size:17px;line-height:1.7;}
   .note .pin{color:var(--terra);font-style:italic;}
 
   .foot{text-align:center;margin-top:40px;padding-top:22px;border-top:1px solid var(--line);}
-  .foot .big{font-family:var(--serif);font-size:24px;color:var(--ink);}
+  .foot .big{font-family:var(--serif);font-size:24px;}
   .foot p{font-size:14px;color:var(--faint);margin-top:6px;}
 
   .sandybar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(252,250,244,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line-2);padding:14px 20px calc(14px + env(safe-area-inset-bottom));}
   .sinner{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:14px;justify-content:center;}
   .smic{flex:none;width:48px;height:48px;border-radius:50%;background:var(--terra);display:flex;align-items:center;justify-content:center;}
   .smic span{width:14px;height:14px;border-radius:50%;background:var(--bone-2);}
-  .stext{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--ink);}
+  .stext{font-family:var(--serif);font-style:italic;font-size:19px;}
   .stext small{display:block;font-family:var(--sans);font-style:normal;font-size:13px;color:var(--muted);}
 </style>
 </head>
 <body>
+<nav class="topnav"><a href="index.html">Conversation</a><a href="home.html">Mission Control</a><a href="catalog.html">Catalog</a><a href="board.html" class="on">A Project</a></nav>
 <div class="wrap">
 
-  <a class="back" href="home.html">&lsaquo; Mission Control</a>
   <div class="crest">Dwyer Interiors</div>
   <h1>Memorial Surgery Center</h1>
   <div class="sub">Healthcare &middot; 6,400 sf &middot; reception, pre-op, two ORs, recovery</div>
@@ -104,13 +135,30 @@
   <div class="bar"><i style="width:62%"></i></div>
   <div class="spendline"><b>$201,400</b> spent of $325,000 budget &middot; 62% &middot; <span class="c">$58,900 committed, not yet billed</span></div>
 
+  <div class="crew">
+    <span class="cm">Lead designer &middot; <b>Charlene</b></span>
+    <span class="cm">Coordinator &middot; <b>Sandy</b></span>
+    <span class="cm">Install crew &middot; <b>Hidalgo &amp; Sons</b></span>
+    <span class="cm">GC &middot; <b>Marlin Build</b></span>
+  </div>
+
+  <div class="h2">Timeline</div>
+  <div class="timeline">
+    <div class="ms done"><span class="pt"></span><div class="dt">Jun 3</div><div class="lb">Measured &amp; specified</div></div>
+    <div class="ms now"><span class="pt"></span><div class="dt">This week</div><div class="lb">Your sign-offs due</div></div>
+    <div class="ms"><span class="pt"></span><div class="dt">Jul 2</div><div class="lb">Chairs arrive</div></div>
+    <div class="ms"><span class="pt"></span><div class="dt">Jul 8</div><div class="lb">Lounge seating</div></div>
+    <div class="ms"><span class="pt"></span><div class="dt">Jul 14</div><div class="lb">Install begins</div></div>
+    <div class="ms"><span class="pt"></span><div class="dt">Jul 21</div><div class="lb">OR flooring</div></div>
+  </div>
+
   <div class="h2">Vendors on this project</div>
   <div class="vendors">
-    <div class="vchip"><span class="vn">Steelcase</span><span class="vc">Catalog &rsaquo;</span></div>
-    <div class="vchip"><span class="vn">Herman Miller</span><span class="vc">Catalog &rsaquo;</span></div>
-    <div class="vchip"><span class="vn">Mannington</span><span class="vc">Catalog &rsaquo;</span></div>
-    <div class="vchip"><span class="vn">Maharam</span><span class="vc">Catalog &rsaquo;</span></div>
-    <div class="vchip"><span class="vn">Sherwin-Williams</span><span class="vc">Catalog &rsaquo;</span></div>
+    <a class="vchip" href="catalog.html"><span class="vn">Steelcase</span><span class="vc">Catalog &rsaquo;</span></a>
+    <a class="vchip" href="catalog.html"><span class="vn">Herman Miller</span><span class="vc">Catalog &rsaquo;</span></a>
+    <a class="vchip" href="catalog.html"><span class="vn">Mannington</span><span class="vc">Catalog &rsaquo;</span></a>
+    <a class="vchip" href="catalog.html"><span class="vn">Maharam</span><span class="vc">Catalog &rsaquo;</span></a>
+    <a class="vchip" href="catalog.html"><span class="vn">Sherwin-Williams</span><span class="vc">Catalog &rsaquo;</span></a>
   </div>
 
   <div class="voice">
@@ -123,72 +171,69 @@
 
   <div class="h2">People on this project</div>
   <div class="people">
-    <a class="person" href="tel:+17135550142">
-      <div class="pn">Dana Reyes</div><div class="pr">Steelcase &middot; your rep</div>
-      <div class="ph">&#9742; (713) 555-0142</div>
-      <div class="last">Last talked Jun 9 — confirmed the Series 1 order; checking stock on the overbed tables.</div>
-    </a>
-    <a class="person" href="tel:+17135550168">
-      <div class="pn">Marcus Hale</div><div class="pr">Herman Miller &middot; your rep</div>
-      <div class="ph">&#9742; (713) 555-0168</div>
-      <div class="last">Last talked Jun 5 — lounge seating lead time; promised an update this week.</div>
-    </a>
-    <a class="person" href="tel:+12815550133">
-      <div class="pn">Lena Ortiz</div><div class="pr">Mannington &middot; flooring</div>
-      <div class="ph">&#9742; (281) 555-0133</div>
-      <div class="last">Last talked Jun 2 — flagged the OR flooring backorder; revised ETA Jul 21.</div>
-    </a>
+    <a class="person" href="tel:+17135550142"><div class="pn">Dana Reyes</div><div class="pr">Steelcase &middot; your rep</div><div class="ph">&#9742; (713) 555-0142</div><div class="last">Last talked Jun 9 — confirmed the Series 1 order; checking stock on the overbed tables.</div></a>
+    <a class="person" href="tel:+17135550168"><div class="pn">Marcus Hale</div><div class="pr">Herman Miller &middot; your rep</div><div class="ph">&#9742; (713) 555-0168</div><div class="last">Last talked Jun 5 — lounge seating lead time; promised an update this week.</div></a>
+    <a class="person" href="tel:+12815550133"><div class="pn">Lena Ortiz</div><div class="pr">Mannington &middot; flooring</div><div class="ph">&#9742; (281) 555-0133</div><div class="last">Last talked Jun 2 — flagged the OR flooring backorder; revised ETA Jul 21.</div></a>
   </div>
 
-  <div class="h2">The board &mdash; everything, at a glance</div>
+  <div class="h2">The board &mdash; with a photo of every piece</div>
 
   <div class="group">
-    <div class="glabel"><span class="gdot d-spec"></span>Specified &mdash; chosen, not yet ordered</div>
+    <div class="glabel"><span class="gdot d-spec"></span>Specified &mdash; chosen, awaiting your OK</div>
     <div class="cards">
-      <div class="item spec"><div class="iv">Maharam</div><div class="it">Panel fabric &mdash; waiting room</div><div class="im">Mode, &lsquo;Beach&rsquo; &middot; 40 yds</div><div class="istate">Awaiting your OK to order</div></div>
-      <div class="item spec"><div class="iv">Sherwin-Williams</div><div class="it">Wall paint &mdash; corridors</div><div class="im">SW 7036 Accessible Beige &middot; 12 gal</div><div class="istate">Awaiting your OK to order</div></div>
+      <div class="item spec"><div class="thumb t-fab"><span>swatch &middot; Maharam</span></div><div class="bd"><div class="iv">Maharam</div><div class="it">Panel fabric &mdash; waiting room</div><div class="im">Mode, &lsquo;Beach&rsquo; &middot; 40 yds</div><div class="iassign">Goes: reception &amp; sub-wait</div><div class="istate">Awaiting your OK to order</div></div></div>
+      <div class="item spec"><div class="thumb t-paint"><span>color &middot; Sherwin-Williams</span></div><div class="bd"><div class="iv">Sherwin-Williams</div><div class="it">Wall paint &mdash; corridors</div><div class="im">SW 7036 Accessible Beige &middot; 12 gal</div><div class="iassign">Goes: all corridors</div><div class="istate">Awaiting your OK to order</div></div></div>
     </div>
   </div>
 
   <div class="group">
     <div class="glabel"><span class="gdot d-ord"></span>Ordered &mdash; PO sent, in production</div>
     <div class="cards">
-      <div class="item ord"><div class="iv">Steelcase</div><div class="it">Series 1 task chairs</div><div class="im">Qty 24 &middot; PO #4471 &middot; rep: Dana</div><div class="istate">Ordered Jun 9 &middot; ETA Jul 2</div></div>
-      <div class="item ord"><div class="iv">Herman Miller</div><div class="it">Reception lounge seating</div><div class="im">Qty 6 &middot; PO #4472 &middot; rep: Marcus</div><div class="istate">Ordered Jun 9 &middot; ETA Jul 8</div></div>
+      <div class="item ord"><div class="thumb t-chair"><span>photo &middot; Steelcase Series 1</span></div><div class="bd"><div class="iv">Steelcase</div><div class="it">Series 1 task chairs</div><div class="im">Qty 24 &middot; PO #4471 &middot; rep: Dana</div><div class="iassign">Goes: nurse stations &amp; recovery &middot; install Hidalgo</div><div class="istate">Ordered Jun 9 &middot; ETA Jul 2</div></div></div>
+      <div class="item ord"><div class="thumb t-soft"><span>photo &middot; Herman Miller</span></div><div class="bd"><div class="iv">Herman Miller</div><div class="it">Reception lounge seating</div><div class="im">Qty 6 &middot; PO #4472 &middot; rep: Marcus</div><div class="iassign">Goes: main reception &middot; install Hidalgo</div><div class="istate">Ordered Jun 9 &middot; ETA Jul 8</div></div></div>
     </div>
   </div>
 
   <div class="group">
     <div class="glabel"><span class="gdot d-bo"></span>Backordered &mdash; needs a watch</div>
     <div class="cards">
-      <div class="item bo"><div class="iv">Mannington</div><div class="it">LVT flooring &mdash; OR suite</div><div class="im">Qty 1,800 sf &middot; PO #4468</div><div class="istate">Backordered &middot; revised ETA Jul 21</div></div>
-      <div class="item bo"><div class="iv">Steelcase</div><div class="it">Overbed tables</div><div class="im">Qty 8 &middot; PO #4470</div><div class="istate">Backordered &middot; Dana checking stock</div></div>
+      <div class="item bo"><div class="thumb t-floor"><span>photo &middot; Mannington LVT</span></div><div class="bd"><div class="iv">Mannington</div><div class="it">LVT flooring &mdash; OR suite</div><div class="im">Qty 1,800 sf &middot; PO #4468</div><div class="iassign">Goes: both ORs &middot; install Hidalgo</div><div class="istate">Backordered &middot; revised ETA Jul 21</div></div></div>
+      <div class="item bo"><div class="thumb t-wood"><span>photo &middot; Steelcase</span></div><div class="bd"><div class="iv">Steelcase</div><div class="it">Overbed tables</div><div class="im">Qty 8 &middot; PO #4470</div><div class="iassign">Goes: recovery bays</div><div class="istate">Backordered &middot; Dana checking stock</div></div></div>
     </div>
   </div>
 
   <div class="group">
     <div class="glabel"><span class="gdot d-ship"></span>In transit</div>
     <div class="cards">
-      <div class="item ship"><div class="iv">Herman Miller</div><div class="it">Casework &mdash; nurse station</div><div class="im">Qty 1 lot &middot; PO #4465</div><div class="istate">Shipped Jun 11 &middot; arrives Jun 16 &middot; tracking 1Z A47 884 471</div></div>
+      <div class="item ship"><div class="thumb t-wood"><span>photo &middot; Herman Miller</span></div><div class="bd"><div class="iv">Herman Miller</div><div class="it">Casework &mdash; nurse station</div><div class="im">Qty 1 lot &middot; PO #4465</div><div class="iassign">Goes: central nurse station &middot; install Hidalgo</div><div class="istate">Shipped Jun 11 &middot; arrives Jun 16 &middot; tracking 1Z A47 884 471</div></div></div>
     </div>
   </div>
 
   <div class="group">
     <div class="glabel"><span class="gdot d-done"></span>Delivered &amp; installed</div>
     <div class="cards">
-      <div class="item done"><div class="iv">Mannington</div><div class="it">Rubber base &mdash; whole suite</div><div class="im">Installed Jun 6</div></div>
-      <div class="item done"><div class="iv">Sherwin-Williams</div><div class="it">Primer &mdash; all walls</div><div class="im">Installed Jun 4</div></div>
+      <div class="item done"><div class="thumb t-floor"><span>photo &middot; Mannington</span></div><div class="bd"><div class="iv">Mannington</div><div class="it">Rubber base &mdash; whole suite</div><div class="im">Installed Jun 6 &middot; by Hidalgo</div><div class="istate">Signed off</div></div></div>
+      <div class="item done"><div class="thumb t-paint"><span>color &middot; Sherwin-Williams</span></div><div class="bd"><div class="iv">Sherwin-Williams</div><div class="it">Primer &mdash; all walls</div><div class="im">Installed Jun 4 &middot; by Marlin</div><div class="istate">Signed off</div></div></div>
     </div>
+  </div>
+
+  <div class="notes">
+    <h3>Notes on this job</h3>
+    <ul>
+      <li>Dr. Patel prefers warm woods; keep ORs strictly to spec.</li>
+      <li>Recovery bays need the quieter casters — confirm with Dana.</li>
+      <li>Charlene reviews all fabrics in person before any fabric PO.</li>
+    </ul>
   </div>
 
   <div class="note">
     <h3>How the orders go out</h3>
-    <p>POs get drafted for you and sent digitally — so the order, the date, the price, and the tracking all live here, on the board. And you still <strong>call Dana and Marcus</strong> like you always have; the relationships don't change, the paperwork just stops eating your nights. <span class="pin">Nothing is ever ordered without your sign-off.</span></p>
+    <p>POs get drafted for you and sent digitally — order, date, price, and tracking all live here. And you still <strong>call Dana and Marcus</strong> like you always have; the relationships don't change, the paperwork just stops eating your nights. <span class="pin">Nothing is ever ordered without your sign-off.</span></p>
   </div>
 
   <div class="foot">
     <div class="big">A sketch of where we're headed.</div>
-    <p>Sample data, made to show the idea. Tell Whitt what's wrong or missing and it changes.</p>
+    <p>Sample data &amp; placeholder photos, made to show the idea. Tell Whitt what's wrong or missing and it changes.</p>
   </div>
 
 </div>
