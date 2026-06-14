@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Dwyer Interiors — Mission Control (preview)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#F4EEE2;--bone-2:#FBF7EE;--card:#FCFAF4;
+    --ink:#2C2722;--muted:#6E655A;--faint:#9A9081;
+    --brass:#A97E45;--sage:#7E9067;--terra:#C0674A;--blue:#5E7A8C;
+    --line:#E6DCCB;--line-2:#D8CCB6;
+    --serif:'Cormorant Garamond','Iowan Old Style',Palatino,Georgia,serif;
+    --sans:'Outfit',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  a{color:inherit;text-decoration:none;}
+  body{font-family:var(--sans);background:var(--bone);color:var(--ink);font-weight:300;font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;padding:0 0 110px;}
+  .wrap{max-width:820px;margin:0 auto;padding:32px 22px;}
+  .crest{font-family:var(--serif);font-size:13px;letter-spacing:.4em;text-transform:uppercase;color:var(--brass);}
+  h1{font-family:var(--serif);font-weight:500;font-size:clamp(34px,8vw,52px);line-height:1.05;margin-top:8px;}
+  .hello{font-family:var(--serif);font-style:italic;font-size:21px;color:var(--muted);margin-top:6px;}
+  .summary{display:flex;gap:26px;flex-wrap:wrap;margin:22px 0 6px;}
+  .stat b{font-family:var(--serif);font-size:30px;font-weight:500;}
+  .stat span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);display:block;}
+  .stat .accent{color:var(--terra);}
+
+  .h2{font-family:var(--serif);font-weight:500;font-size:24px;margin:34px 0 14px;display:flex;align-items:center;gap:12px;}
+  .h2:before{content:'';width:22px;height:1px;background:var(--line-2);}
+
+  .proj{display:block;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:20px 22px;margin-bottom:14px;position:relative;overflow:hidden;}
+  .proj:before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--brass);}
+  .proj.attn:before{background:var(--terra);}
+  .ptop{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;}
+  .pname{font-family:var(--serif);font-size:27px;line-height:1.1;}
+  .ptype{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);}
+  .open{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--brass);white-space:nowrap;}
+  .bar{height:7px;border-radius:6px;background:#EAE0CF;margin:14px 0 7px;overflow:hidden;}
+  .bar > i{display:block;height:100%;background:var(--sage);}
+  .spend{font-size:14px;color:var(--muted);}
+  .spend b{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--ink);}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+  .chip{font-size:13px;padding:5px 11px;border-radius:30px;background:var(--bone-2);border:1px solid var(--line);color:var(--muted);}
+  .chip.warn{color:var(--terra);border-color:#E7C9BD;background:#FBEFE9;}
+  .chip.go{color:var(--sage);border-color:#D2DBC5;background:#F0F3EA;}
+
+  .foot{text-align:center;margin-top:38px;padding-top:22px;border-top:1px solid var(--line);}
+  .foot .big{font-family:var(--serif);font-size:24px;}
+  .foot p{font-size:14px;color:var(--faint);margin-top:6px;}
+
+  /* tell sandy bar */
+  .sandybar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(252,250,244,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line-2);padding:14px 20px calc(14px + env(safe-area-inset-bottom));}
+  .sinner{max-width:820px;margin:0 auto;display:flex;align-items:center;gap:14px;justify-content:center;}
+  .smic{flex:none;width:48px;height:48px;border-radius:50%;background:var(--terra);display:flex;align-items:center;justify-content:center;}
+  .smic span{width:14px;height:14px;border-radius:50%;background:var(--bone-2);}
+  .stext{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--ink);}
+  .stext small{display:block;font-family:var(--sans);font-style:normal;font-size:13px;color:var(--muted);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="crest">Dwyer Interiors</div>
+  <h1>Mission Control</h1>
+  <div class="hello">Good evening, Charlene. Here's everything, in one place.</div>
+
+  <div class="summary">
+    <div class="stat"><b>4</b><span>active projects</span></div>
+    <div class="stat"><b class="accent">5</b><span class="accent">awaiting your OK</span></div>
+    <div class="stat"><b>3</b><span>arriving this week</span></div>
+    <div class="stat"><b>$486k</b><span>in flight</span></div>
+  </div>
+
+  <div class="h2">Your projects</div>
+
+  <a class="proj attn" href="board.html">
+    <div class="ptop"><div><div class="pname">Memorial Surgery Center</div><div class="ptype">Healthcare &middot; 6,400 sf</div></div><div class="open">Open &rsaquo;</div></div>
+    <div class="bar"><i style="width:62%"></i></div>
+    <div class="spend"><b>$201,400</b> spent of $325,000 &middot; 62%</div>
+    <div class="chips"><span class="chip go">9 ordered</span><span class="chip warn">2 backordered</span><span class="chip warn">2 awaiting your OK</span><span class="chip">install starts Jul 14</span></div>
+  </a>
+
+  <a class="proj" href="board.html">
+    <div class="ptop"><div><div class="pname">Caldwell Ranch Lodge</div><div class="ptype">Hunting camp &middot; great room &amp; 6 suites</div></div><div class="open">Open &rsaquo;</div></div>
+    <div class="bar"><i style="width:34%"></i></div>
+    <div class="spend"><b>$78,900</b> spent of $230,000 &middot; 34%</div>
+    <div class="chips"><span class="chip go">4 ordered</span><span class="chip warn">3 awaiting your OK</span><span class="chip">measuring Mon</span></div>
+  </a>
+
+  <a class="proj" href="board.html">
+    <div class="ptop"><div><div class="pname">Gulf Coast Toyota</div><div class="ptype">Dealership &middot; showroom &amp; lounge</div></div><div class="open">Open &rsaquo;</div></div>
+    <div class="bar"><i style="width:88%"></i></div>
+    <div class="spend"><b>$142,300</b> spent of $162,000 &middot; 88%</div>
+    <div class="chips"><span class="chip go">punch list</span><span class="chip">final walk Jun 20</span></div>
+  </a>
+
+  <a class="proj" href="board.html">
+    <div class="ptop"><div><div class="pname">Bayou City Pediatrics</div><div class="ptype">Doctor's office &middot; 5 exam rooms</div></div><div class="open">Open &rsaquo;</div></div>
+    <div class="bar"><i style="width:12%"></i></div>
+    <div class="spend"><b>$9,200</b> spent of $74,000 &middot; 12%</div>
+    <div class="chips"><span class="chip">specifying</span><span class="chip warn">color sign-off needed</span></div>
+  </a>
+
+  <div class="foot">
+    <div class="big">One place. Every project. At a glance.</div>
+    <p>Sample data, made to show the idea. Tap a project to see its board. Tell Whitt what to change.</p>
+  </div>
+
+</div>
+
+<div class="sandybar">
+  <div class="sinner">
+    <div class="smic"><span></span></div>
+    <div class="stext">&ldquo;Sandy, the Caldwells don't want the green — note it.&rdquo;<small>Tell Sandy an idea or a change anytime &middot; from your iPad or your phone</small></div>
+  </div>
+</div>
+</body>
+</html>
