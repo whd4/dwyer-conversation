@@ -44,6 +44,8 @@
         color:#fff;background:var(--sage);border:none;border-radius:16px;padding:22px;margin-top:40px;cursor:pointer;text-decoration:none;min-height:68px;}
   .send:active{transform:scale(.99);}
   .send.dim{background:var(--line-2);color:var(--faint);pointer-events:none;}
+  .send2{display:block;width:100%;text-align:center;font-family:var(--sans);font-size:18px;font-weight:500;color:var(--sage);background:var(--card);border:2px solid var(--sage);border-radius:16px;padding:18px;margin-top:14px;cursor:pointer;text-decoration:none;min-height:60px;}
+  .send2:active{transform:scale(.99);}
   .foot{text-align:center;font-size:15px;color:var(--faint);margin-top:18px;line-height:1.5;}
   .tour{display:block;text-align:center;font-size:16px;color:var(--sage);margin-top:26px;text-decoration:none;}
 </style>
@@ -85,7 +87,8 @@
   </div>
 
   <a class="send dim" id="send" href="#">Send my answers to Whitt</a>
-  <div class="foot">That's it — thank you. One tap and your answers go to Whitt.<br>Prefer to just talk it through? Hand him the iPad and tell him.</div>
+  <a class="send2" id="savefile" href="#">📥 Or save my answers as a file</a>
+  <div class="foot">That's it — thank you.<br><b>Send</b> emails your answers straight to Whitt. Or <b>save as a file</b> — it goes to your iPad's <b>Files → Downloads</b>, and you can email it from there.<br>Prefer to just talk it through? Hand him the iPad and tell him.</div>
   <a class="tour" href="index.html">← Or look around at what it does</a>
 </div>
 
@@ -111,6 +114,23 @@
       send.href = "#"; send.classList.add('dim');
     }
   }
+  document.getElementById('savefile').addEventListener('click', function(e){
+    e.preventDefault();
+    var lines = [];
+    document.querySelectorAll('.q').forEach(function(q){
+      var picks = [];
+      q.querySelectorAll('.opt.on').forEach(function(b){ picks.push(b.textContent.trim()); });
+      if(picks.length){ lines.push('**' + q.dataset.q + ':** ' + picks.join('; ')); }
+    });
+    if(!lines.length){ alert('Tap a few answers first, then save.'); return; }
+    var md = "# Charlene's Answers — Dwyer Interiors\n\n" + lines.join('\n\n') + "\n";
+    var blob = new Blob([md], {type:'text/markdown'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = 'Charlene-answers.md';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1500);
+  });
 </script>
 </body>
 </html>
