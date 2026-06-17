@@ -13,124 +13,328 @@
   :root{
     --bone:#F6F6F3;--bone-2:#FCFCFA;--card:#FFFFFF;
     --ink:#1F2024;--muted:#6A6C72;--faint:#9DA0A6;
-    --sage:#6F8069;--sage-fill:#E9EFE7;--terra:#C2795F;
+    --sage:#6F8069;--sage-fill:#E9EFE7;--terra:#C2795F;--terra-fill:#F6E9E2;
     --line:#E7E7E3;--line-2:#D9D9D3;
     --serif:'Cormorant Garamond',Georgia,serif;
     --sans:'Outfit',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-  html{color-scheme:light;}
-  body{font-family:var(--sans);background:var(--bone);color:var(--ink);font-weight:300;font-size:19px;line-height:1.55;-webkit-font-smoothing:antialiased;padding:0 0 60px;}
-  .wrap{max-width:620px;margin:0 auto;padding:34px 22px;}
-  .crest{font-family:var(--serif);font-size:13px;letter-spacing:.4em;text-transform:uppercase;color:var(--sage);text-align:center;}
-  h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,8vw,44px);line-height:1.08;text-align:center;margin-top:8px;}
-  .sub{font-family:var(--serif);font-style:italic;font-size:21px;color:var(--muted);text-align:center;margin-top:8px;}
-  .hint{text-align:center;font-size:15px;color:var(--faint);margin-top:6px;letter-spacing:.02em;}
+  html{color-scheme:light;scroll-behavior:smooth;}
+  body{font-family:var(--sans);background:var(--bone);color:var(--ink);font-weight:300;font-size:19px;line-height:1.55;-webkit-font-smoothing:antialiased;padding:0 0 40px;}
+  .wrap{max-width:660px;margin:0 auto;padding:0 22px;}
 
-  .q{margin-top:38px;}
-  .qn{font-family:var(--serif);font-weight:500;font-size:25px;line-height:1.2;margin-bottom:16px;}
-  .opt{display:block;width:100%;text-align:left;font-family:var(--sans);font-size:19px;font-weight:400;color:var(--ink);
-       background:var(--card);border:2px solid var(--line-2);border-radius:14px;padding:18px 20px;margin-bottom:12px;cursor:pointer;
-       min-height:60px;transition:all .12s;display:flex;align-items:center;gap:14px;}
+  /* COVER */
+  .cover{min-height:92svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 26px;
+    background:radial-gradient(120% 80% at 50% 0%,var(--bone-2),var(--bone) 70%);}
+  .crest{font-family:var(--serif);font-size:14px;letter-spacing:.42em;text-transform:uppercase;color:var(--sage);margin-bottom:22px;}
+  .mark{font-family:var(--serif);font-weight:500;font-size:clamp(40px,11vw,72px);line-height:1.03;}
+  .mark .it{font-style:italic;color:var(--sage);}
+  .estd{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--muted);margin-top:12px;}
+  .rule{width:54px;height:1px;background:var(--line-2);margin:30px auto;}
+  .invite{font-family:var(--serif);font-size:clamp(25px,6.2vw,36px);line-height:1.3;max-width:18ch;margin:0 auto 18px;}
+  .frm{font-size:17px;color:var(--muted);max-width:30ch;margin:0 auto 34px;line-height:1.75;}
+  .begin{font-family:var(--sans);font-weight:400;font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:var(--bone-2);background:var(--sage);border:none;padding:18px 44px;border-radius:3px;cursor:pointer;min-height:62px;}
+  .begin:active{opacity:.82;}
+  .scrollhint{margin-top:30px;font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);}
+
+  /* PROGRESS */
+  .progress{position:sticky;top:0;z-index:60;height:5px;background:var(--line);}
+  .progress > i{display:block;height:100%;width:0;background:var(--sage);transition:width .3s;}
+
+  /* QUESTIONS */
+  .qhead{text-align:center;padding:30px 0 4px;}
+  .qhead .crest{margin-bottom:10px;}
+  .qhead h1{font-family:var(--serif);font-weight:500;font-size:clamp(28px,7vw,40px);line-height:1.08;}
+  .qhead .sub{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--muted);margin-top:6px;}
+  .qhead .hint{font-size:15px;color:var(--faint);margin-top:6px;}
+
+  .q{margin-top:34px;padding-top:26px;border-top:1px solid var(--line);}
+  .q:first-of-type{border-top:none;}
+  .qn{font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.22;margin-bottom:4px;}
+  .qi{font-size:16px;color:var(--muted);font-style:italic;margin-bottom:16px;line-height:1.5;}
+  .opt{display:flex;align-items:center;gap:14px;width:100%;text-align:left;font-family:var(--sans);font-size:18.5px;font-weight:400;color:var(--ink);
+       background:var(--card);border:2px solid var(--line-2);border-radius:14px;padding:16px 18px;margin-bottom:11px;cursor:pointer;
+       min-height:60px;transition:transform .1s,border-color .12s,background .12s;}
   .opt:active{transform:scale(.99);}
-  .opt .dot{flex:none;width:24px;height:24px;border-radius:50%;border:2px solid var(--line-2);transition:all .12s;}
-  .opt.on{border-color:var(--sage);background:var(--sage-fill);color:var(--ink);font-weight:500;}
+  .opt .dot{flex:none;width:24px;height:24px;border-radius:7px;border:2px solid var(--line-2);transition:all .12s;}
+  .opt.pick-one .dot{border-radius:50%;}
+  .opt.on{border-color:var(--sage);background:var(--sage-fill);font-weight:500;}
   .opt.on .dot{border-color:var(--sage);background:var(--sage);box-shadow:inset 0 0 0 4px var(--sage-fill);}
-
-  .talk{font-size:16px;color:var(--muted);font-style:italic;margin-top:6px;padding-left:4px;}
+  .talk{font-size:15.5px;color:var(--muted);font-style:italic;margin-top:4px;padding-left:2px;}
   .talk b{color:var(--terra);font-style:normal;font-weight:500;}
 
+  /* VOICE NOTE */
+  .voice{background:var(--card);border:2px solid var(--line-2);border-radius:14px;padding:18px;margin-top:6px;text-align:center;}
+  .recbtn{display:inline-flex;align-items:center;gap:11px;font-family:var(--sans);font-size:17px;color:var(--bone-2);background:var(--terra);border:none;padding:15px 26px;border-radius:44px;cursor:pointer;min-height:56px;}
+  .recbtn.on{background:#9c3f2a;}
+  .recbtn .d{width:13px;height:13px;border-radius:50%;background:var(--bone-2);}
+  .recbtn.on .d{animation:pulse 1.1s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.25;}}
+  .rtime{font-size:15px;color:var(--muted);margin-left:10px;}
+  .rrow{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .rsmall{font-size:15px;color:var(--ink);background:var(--bone);border:1px solid var(--line-2);padding:12px 18px;border-radius:44px;cursor:pointer;text-decoration:none;}
+  .rstatus{font-size:14px;color:var(--muted);margin-top:8px;}
+
+  /* SEND */
+  .sendwrap{margin-top:42px;}
   .send{display:block;width:100%;text-align:center;font-family:var(--sans);font-size:21px;font-weight:500;letter-spacing:.02em;
-        color:#fff;background:var(--sage);border:none;border-radius:16px;padding:22px;margin-top:40px;cursor:pointer;text-decoration:none;min-height:68px;}
+        color:#fff;background:var(--sage);border:none;border-radius:16px;padding:22px;cursor:pointer;text-decoration:none;min-height:70px;}
   .send:active{transform:scale(.99);}
   .send.dim{background:var(--line-2);color:var(--faint);pointer-events:none;}
-  .send2{display:block;width:100%;text-align:center;font-family:var(--sans);font-size:18px;font-weight:500;color:var(--sage);background:var(--card);border:2px solid var(--sage);border-radius:16px;padding:18px;margin-top:14px;cursor:pointer;text-decoration:none;min-height:60px;}
+  .send2{display:block;width:100%;text-align:center;font-family:var(--sans);font-size:18px;font-weight:500;color:var(--sage);background:var(--card);border:2px solid var(--sage);border-radius:16px;padding:18px;margin-top:13px;cursor:pointer;text-decoration:none;min-height:60px;}
   .send2:active{transform:scale(.99);}
-  .foot{text-align:center;font-size:15px;color:var(--faint);margin-top:18px;line-height:1.5;}
-  .tour{display:block;text-align:center;font-size:16px;color:var(--sage);margin-top:26px;text-decoration:none;}
+  .foot{text-align:center;font-size:15px;color:var(--faint);margin-top:18px;line-height:1.55;}
+  .tour{display:block;text-align:center;font-size:16px;color:var(--sage);margin-top:24px;text-decoration:none;padding:14px;}
+  .hidden{display:none;}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="crest">Dwyer Interiors</div>
-  <h1>A few questions, Mom</h1>
-  <div class="sub">Tap your answer — or just tell me.</div>
-  <div class="hint">No typing. There are no wrong answers.</div>
 
+<div class="progress"><i id="bar"></i></div>
+
+<!-- COVER -->
+<header class="cover" id="cover">
+  <div class="crest">Dwyer Interiors</div>
+  <div class="mark">Dwyer <span class="it">Interiors</span></div>
+  <div class="estd">Commercial Interior Design &middot; Est. 1978</div>
+  <div class="rule"></div>
+  <div class="invite">A few questions, Mom.</div>
+  <div class="frm">Just tap your answers — or tap the button and talk. Never any typing.</div>
+  <button class="begin" onclick="begin()">Begin when you're ready</button>
+  <div class="scrollhint">Tap &middot; or talk &middot; there are no wrong answers</div>
+</header>
+
+<!-- QUESTIONS -->
+<main class="wrap hidden" id="main">
+  <div class="qhead">
+    <div class="crest">Your answers shape the system</div>
+    <h1>Tap what fits</h1>
+    <div class="sub">Pick as many as you like.</div>
+    <div class="hint">If none fit, tap the last one and just tell Whitt.</div>
+  </div>
+
+  <!-- 1 -->
   <div class="q" data-q="What eats her evenings most">
     <div class="qn">What part of a job eats your evenings the most?</div>
+    <div class="qi">The grind we take off your plate first.</div>
     <button class="opt"><span class="dot"></span>Purchase orders &amp; ordering</button>
-    <button class="opt"><span class="dot"></span>Chasing vendors</button>
-    <button class="opt"><span class="dot"></span>Tracking orders &amp; deliveries</button>
+    <button class="opt"><span class="dot"></span>Chasing vendors for status</button>
+    <button class="opt"><span class="dot"></span>Tracking orders, backorders &amp; deliveries</button>
     <button class="opt"><span class="dot"></span>Paperwork &amp; QuickBooks</button>
+    <button class="opt"><span class="dot"></span>Spec sheets &amp; sourcing</button>
     <button class="opt"><span class="dot"></span>Honestly — all of it</button>
     <div class="talk">Tap any that fit, or <b>tell Whitt</b> in your own words.</div>
   </div>
 
+  <!-- 2 -->
   <div class="q" data-q="What 90-day success looks like">
     <div class="qn">If this works, how would you know in 90 days?</div>
+    <div class="qi">However you'd measure it — a number or a feeling.</div>
     <button class="opt"><span class="dot"></span>I took a job I'd have turned down</button>
     <button class="opt"><span class="dot"></span>I'm off the desk earlier in the evening</button>
     <button class="opt"><span class="dot"></span>Nothing slipped through the cracks</button>
+    <button class="opt"><span class="dot"></span>I'm back doing bigger commercial work</button>
     <button class="opt"><span class="dot"></span>I'm just less stressed</button>
-    <button class="opt"><span class="dot"></span>Let me say it my own way</button>
   </div>
 
-  <div class="q" data-q="Top vendor">
-    <div class="qn">Who do you order from the most?</div>
-    <button class="opt"><span class="dot"></span>Steelcase</button>
-    <button class="opt"><span class="dot"></span>Herman Miller</button>
-    <button class="opt"><span class="dot"></span>Mannington</button>
-    <button class="opt"><span class="dot"></span>Maharam</button>
-    <button class="opt"><span class="dot"></span>Sherwin-Williams</button>
-    <button class="opt"><span class="dot"></span>Someone else — I'll tell Whitt</button>
+  <!-- 3 -->
+  <div class="q" data-q="Work she wants more of">
+    <div class="qn">What work would you love to do <em>more</em> of?</div>
+    <div class="qi">Where we point the firm next.</div>
+    <button class="opt"><span class="dot"></span>Surgery centers &amp; ASCs</button>
+    <button class="opt"><span class="dot"></span>Doctor's offices &amp; clinics</button>
+    <button class="opt"><span class="dot"></span>Behavioral / mental health</button>
+    <button class="opt"><span class="dot"></span>Pharma &amp; drug-trial build-outs</button>
+    <button class="opt"><span class="dot"></span>Labs &amp; testing facilities</button>
+    <button class="opt"><span class="dot"></span>Dealerships, oil &amp; gas, country clubs</button>
+    <div class="talk">The big regulated jobs are where we want you back — <b>tell Whitt</b> which ones.</div>
   </div>
 
-  <a class="send dim" id="send" href="#">Send my answers to Whitt</a>
-  <a class="send2" id="savefile" href="#">📥 Or save my answers as a file</a>
-  <div class="foot">That's it — thank you.<br><b>Send</b> emails your answers straight to Whitt. Or <b>save as a file</b> — it goes to your iPad's <b>Files → Downloads</b>, and you can email it from there.<br>Prefer to just talk it through? Hand him the iPad and tell him.</div>
-  <a class="tour" href="index.html">← Or look around at what it does</a>
-</div>
+  <!-- 4 — vendor question FIXED: by category, not "your #1" -->
+  <div class="q" data-q="Categories she buys most">
+    <div class="qn">What do you spec &amp; buy the most?</div>
+    <div class="qi">It depends on the job — so pick the categories you buy most, and we load <em>those</em> catalogs first. (No "one top vendor" — your reps, you'll just tell Whitt.)</div>
+    <button class="opt"><span class="dot"></span>Furniture &amp; seating</button>
+    <button class="opt"><span class="dot"></span>Casework &amp; millwork</button>
+    <button class="opt"><span class="dot"></span>Flooring</button>
+    <button class="opt"><span class="dot"></span>Wallcovering &amp; paint</button>
+    <button class="opt"><span class="dot"></span>Lighting</button>
+    <button class="opt"><span class="dot"></span>Window treatments</button>
+    <button class="opt"><span class="dot"></span>Medical / lab specialty</button>
+    <div class="talk">For each one, your go-to reps &amp; how you order (email / portal / phone) — <b>tell Whitt</b>.</div>
+  </div>
+
+  <!-- 5 -->
+  <div class="q" data-q="What she'd hand off first">
+    <div class="qn">What would you hand off <em>first</em> — if you trusted it?</div>
+    <button class="opt"><span class="dot"></span>Draft my purchase orders</button>
+    <button class="opt"><span class="dot"></span>Keep a live order tracker</button>
+    <button class="opt"><span class="dot"></span>Turn a sketch into a presentable board</button>
+    <button class="opt"><span class="dot"></span>Tie everything to QuickBooks</button>
+    <button class="opt"><span class="dot"></span>Coordinate installs &amp; schedules</button>
+    <button class="opt"><span class="dot"></span>Keep clients updated</button>
+  </div>
+
+  <!-- 6 -->
+  <div class="q" data-q="What she must approve before it goes out">
+    <div class="qn">Before anything goes out under your name, you want to…</div>
+    <div class="qi">Nothing ever leaves without your sign-off. This sets how much you see.</div>
+    <button class="opt"><span class="dot"></span>See &amp; approve every purchase order</button>
+    <button class="opt"><span class="dot"></span>Approve every client email</button>
+    <button class="opt"><span class="dot"></span>Approve every spec &amp; selection</button>
+    <button class="opt"><span class="dot"></span>Just review everything once a week</button>
+  </div>
+
+  <!-- 7a -->
+  <div class="q" data-q="The part she'd clone">
+    <div class="qn">If you could duplicate yourself for <em>one</em> part of the job — which?</div>
+    <button class="opt pick-one"><span class="dot"></span>The ordering &amp; POs</button>
+    <button class="opt pick-one"><span class="dot"></span>The tracking &amp; follow-up</button>
+    <button class="opt pick-one"><span class="dot"></span>The drawings &amp; boards</button>
+    <button class="opt pick-one"><span class="dot"></span>The bookkeeping</button>
+  </div>
+
+  <!-- 7b -->
+  <div class="q" data-q="The part that must always be her">
+    <div class="qn">…and the part that must <em>always</em> be you?</div>
+    <button class="opt pick-one"><span class="dot"></span>The design itself</button>
+    <button class="opt pick-one"><span class="dot"></span>The client relationship</button>
+    <button class="opt pick-one"><span class="dot"></span>The final eye on everything</button>
+    <button class="opt pick-one"><span class="dot"></span>The sourcing taste</button>
+  </div>
+
+  <!-- 8 — the contacts / get-back-in ask, softened -->
+  <div class="q" data-q="Reaching out to past clients">
+    <div class="qn">Would you be open to me quietly reaching back out to past clients?</div>
+    <div class="qi">To see if they're ready to remodel or upgrade — so we can get you back into the big work. You stay in control.</div>
+    <button class="opt pick-one"><span class="dot"></span>Yes — go for it</button>
+    <button class="opt pick-one"><span class="dot"></span>Yes, but I approve each one first</button>
+    <button class="opt pick-one"><span class="dot"></span>Let's talk it through together</button>
+    <button class="opt pick-one"><span class="dot"></span>Not yet</button>
+  </div>
+
+  <!-- 9 — reaction, by voice -->
+  <div class="q" data-q="Her reaction (voice note)">
+    <div class="qn">Anything you'd change, or that's missing?</div>
+    <div class="qi">Tap and talk — say whatever's on your mind. Or just tell Whitt.</div>
+    <div class="voice">
+      <button class="recbtn" id="recBtn" onclick="toggleRec()"><span class="d"></span><span id="recLabel">Tap to record a voice note</span><span class="rtime" id="recTime"></span></button>
+      <div class="rrow hidden" id="rrow">
+        <button class="rsmall" onclick="playBack()">&#9658; Play it back</button>
+        <a class="rsmall hidden" id="saveAudio" download="charlene-voice-note.m4a">&#8595; Save voice note</a>
+      </div>
+      <div class="rstatus" id="recStatus"></div>
+    </div>
+  </div>
+
+  <!-- SEND -->
+  <div class="sendwrap">
+    <a class="send dim" id="send" href="#">Send my answers to Whitt</a>
+    <a class="send2" id="savefile" href="#">&#128229; Or save my answers as a file</a>
+    <div class="foot">That's it — thank you, Mom.<br><b>Send</b> emails your answers straight to Whitt. <b>Save as a file</b> drops them in your iPad's <b>Files &rarr; Downloads</b> to email later.<br>Saved a voice note? Tap <b>Save voice note</b> and text it to Whitt too.</div>
+    <a class="tour" href="index.html">&larr; Or look around at what the system does</a>
+  </div>
+</main>
 
 <script>
+  function begin(){
+    document.getElementById('main').classList.remove('hidden');
+    document.getElementById('main').scrollIntoView({behavior:'smooth',block:'start'});
+    updateBar();
+  }
+
+  // selection logic — most questions multi-select; .pick-one questions are single-select
   document.querySelectorAll('.q').forEach(function(q){
+    var single = q.querySelector('.opt.pick-one');
     q.querySelectorAll('.opt').forEach(function(b){
-      b.addEventListener('click', function(){ b.classList.toggle('on'); updateSend(); });
+      b.addEventListener('click', function(){
+        if(single){
+          q.querySelectorAll('.opt').forEach(function(o){ if(o!==b) o.classList.remove('on'); });
+          b.classList.toggle('on');
+        } else {
+          b.classList.toggle('on');
+        }
+        updateSend(); updateBar();
+      });
     });
   });
-  function updateSend(){
-    var lines = [];
+
+  function collect(){
+    var lines=[];
     document.querySelectorAll('.q').forEach(function(q){
-      var picks = [];
+      var picks=[];
       q.querySelectorAll('.opt.on').forEach(function(b){ picks.push(b.textContent.trim()); });
       if(picks.length){ lines.push(q.dataset.q + ': ' + picks.join('; ')); }
     });
-    var send = document.getElementById('send');
-    if(lines.length){
-      var body = encodeURIComponent("Mom's answers:\n\n" + lines.join('\n') + "\n\n(Sent from the Dwyer Interiors page)");
-      send.href = "mailto:whittdwyer@gmail.com?subject=" + encodeURIComponent("Mom's answers — Dwyer Interiors") + "&body=" + body;
-      send.classList.remove('dim');
-    } else {
-      send.href = "#"; send.classList.add('dim');
-    }
+    return lines;
   }
+
+  function updateSend(){
+    var lines=collect(); var send=document.getElementById('send');
+    if(lines.length){
+      var body=encodeURIComponent("Mom's answers:\n\n"+lines.join('\n')+"\n\n(From the Dwyer Interiors iPad page)");
+      send.href="mailto:whittdwyer@gmail.com?subject="+encodeURIComponent("Mom's answers — Dwyer Interiors")+"&body="+body;
+      send.classList.remove('dim');
+    } else { send.href="#"; send.classList.add('dim'); }
+  }
+
+  function updateBar(){
+    var total=document.querySelectorAll('.q').length;
+    var done=0; document.querySelectorAll('.q').forEach(function(q){ if(q.querySelector('.opt.on')) done++; });
+    document.getElementById('bar').style.width=Math.round(done/total*100)+'%';
+  }
+
   document.getElementById('savefile').addEventListener('click', function(e){
     e.preventDefault();
-    var lines = [];
-    document.querySelectorAll('.q').forEach(function(q){
-      var picks = [];
-      q.querySelectorAll('.opt.on').forEach(function(b){ picks.push(b.textContent.trim()); });
-      if(picks.length){ lines.push('**' + q.dataset.q + ':** ' + picks.join('; ')); }
-    });
+    var lines=collect();
     if(!lines.length){ alert('Tap a few answers first, then save.'); return; }
-    var md = "# Charlene's Answers — Dwyer Interiors\n\n" + lines.join('\n\n') + "\n";
-    var blob = new Blob([md], {type:'text/markdown'});
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url; a.download = 'Charlene-answers.md';
+    var md="# Charlene's Answers — Dwyer Interiors\n\n"+lines.map(function(l){
+      var i=l.indexOf(': '); return '**'+l.slice(0,i)+':** '+l.slice(i+2);
+    }).join('\n\n')+"\n";
+    var blob=new Blob([md],{type:'text/markdown'});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement('a'); a.href=url; a.download='Charlene-answers.md';
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
-    setTimeout(function(){ URL.revokeObjectURL(url); }, 1500);
+    setTimeout(function(){ URL.revokeObjectURL(url); },1500);
   });
+
+  // voice note recorder (saves an audio clip; tap to talk, no typing)
+  var mediaRecorder,chunks=[],stream,startT,timer,blobURL;
+  var recBtn=document.getElementById('recBtn'),recLabel=document.getElementById('recLabel'),
+      recTime=document.getElementById('recTime'),recStatus=document.getElementById('recStatus'),
+      rrow=document.getElementById('rrow'),saveAudio=document.getElementById('saveAudio');
+  function fmt(s){var m=Math.floor(s/60),ss=s%60;return m+':'+(ss<10?'0':'')+ss;}
+  function tick(){recTime.textContent=fmt(Math.floor((Date.now()-startT)/1000));}
+  function toggleRec(){
+    if(mediaRecorder&&mediaRecorder.state==='recording'){
+      mediaRecorder.stop();clearInterval(timer);
+      recBtn.classList.remove('on');recLabel.textContent='Tap to record again';
+      recStatus.textContent='Saved below — play it back, or save the voice note.';
+      return;
+    }
+    if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||typeof MediaRecorder==='undefined'){
+      recStatus.textContent='This browser can’t record here — just tell Whitt.';return;
+    }
+    navigator.mediaDevices.getUserMedia({audio:true}).then(function(s){
+      stream=s;chunks=[];
+      try{mediaRecorder=new MediaRecorder(stream);}catch(e){mediaRecorder=new MediaRecorder(stream,{mimeType:'audio/mp4'});}
+      mediaRecorder.ondataavailable=function(e){if(e.data&&e.data.size>0)chunks.push(e.data);};
+      mediaRecorder.onstop=function(){
+        var type=(chunks[0]&&chunks[0].type)||'audio/mp4';
+        var blob=new Blob(chunks,{type:type});
+        if(blobURL)URL.revokeObjectURL(blobURL); blobURL=URL.createObjectURL(blob);
+        saveAudio.href=blobURL; saveAudio.download='charlene-voice-note'+(type.indexOf('webm')>-1?'.webm':'.m4a');
+        rrow.classList.remove('hidden'); saveAudio.classList.remove('hidden');
+        if(stream)stream.getTracks().forEach(function(t){t.stop();});
+      };
+      mediaRecorder.start(); startT=Date.now(); tick(); timer=setInterval(tick,1000);
+      recBtn.classList.add('on'); recLabel.textContent='Recording — tap to stop';
+      recStatus.textContent='Listening… say whatever you like.';
+    }).catch(function(){
+      recStatus.textContent='Microphone is off. In Safari tap “aA” → Website Settings → allow Microphone — or just tell Whitt.';
+    });
+  }
+  function playBack(){if(blobURL){new Audio(blobURL).play();}}
 </script>
 </body>
 </html>
