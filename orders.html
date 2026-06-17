@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light only">
+<title>Dwyer Interiors — Purchase Orders (preview)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#F6F6F3;--bone-2:#FCFCFA;--card:#FFFFFF;
+    --ink:#1F2024;--muted:#6A6C72;--faint:#9DA0A6;
+    --brass:#6F8069;--sage:#6F8069;--terra:#C2795F;--blue:#5E7A8C;
+    --line:#E7E7E3;--line-2:#D9D9D3;
+    --serif:'Cormorant Garamond','Iowan Old Style',Palatino,Georgia,serif;
+    --sans:'Outfit',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  html{color-scheme:light;}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  a{color:inherit;text-decoration:none;}
+  body{font-family:var(--sans);background:var(--bone);color:var(--ink);font-weight:300;font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;padding:0 0 120px;}
+  .topnav{position:sticky;top:0;z-index:60;display:flex;flex-wrap:wrap;justify-content:center;gap:6px;background:rgba(251,247,238,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:11px 14px;}
+  .topnav a{font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 16px;border-radius:30px;}
+  .topnav a.on{color:var(--brass);background:var(--bone);}
+  .wrap{max-width:860px;margin:0 auto;padding:26px 22px;}
+  .crest{font-family:var(--serif);font-size:13px;letter-spacing:.4em;text-transform:uppercase;color:var(--brass);}
+  h1{font-family:var(--serif);font-weight:500;font-size:clamp(32px,7vw,48px);line-height:1.06;margin-top:6px;}
+  .sub{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--muted);margin-top:4px;max-width:40ch;}
+
+  .summary{display:flex;gap:24px;flex-wrap:wrap;margin:22px 0 6px;}
+  .stat b{font-family:var(--serif);font-size:28px;font-weight:500;}
+  .stat span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);display:block;}
+  .stat .accent{color:var(--terra);}
+
+  .promise{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--brass);border-radius:4px;padding:16px 20px;margin:18px 0 6px;font-size:16px;color:var(--ink);}
+  .promise b{font-family:var(--serif);font-weight:600;color:var(--brass);}
+
+  .h2{font-family:var(--serif);font-weight:500;font-size:24px;margin:34px 0 14px;display:flex;align-items:center;gap:12px;}
+  .h2:before{content:'';width:22px;height:1px;background:var(--line-2);}
+
+  .po{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:18px 20px;margin-bottom:14px;position:relative;overflow:hidden;}
+  .po:before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--brass);}
+  .po.draft:before{background:var(--terra);}
+  .po.ship:before{background:var(--blue);}
+  .po.done:before{background:var(--sage);}
+  .potop{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;}
+  .povendor{font-family:var(--serif);font-size:25px;line-height:1.1;}
+  .ponum{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);}
+  .poitem{font-size:17px;color:var(--ink);margin:8px 0 2px;}
+  .pometa{font-size:14px;color:var(--muted);}
+  .pmeta-row{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-top:12px;}
+  .pototal{font-family:var(--serif);font-size:22px;font-weight:500;}
+  .badge{font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:30px;border:1px solid var(--line-2);color:var(--muted);background:var(--bone-2);white-space:nowrap;}
+  .badge.draft{color:var(--terra);border-color:#E7C9BD;background:#FBEFE9;}
+  .badge.ship{color:var(--blue);border-color:#CBD9E0;background:#EDF3F6;}
+  .badge.done{color:var(--sage);border-color:#D2DBC5;background:#F0F3EA;}
+  .acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+  .act{font-size:14px;letter-spacing:.03em;border:1px solid var(--line-2);border-radius:30px;padding:11px 18px;color:var(--ink);background:var(--bone-2);}
+  .act.go{background:var(--brass);color:var(--bone-2);border-color:var(--brass);}
+  .act.hold{color:var(--terra);border-color:#E7C9BD;}
+
+  .foot{text-align:center;margin-top:40px;padding-top:22px;border-top:1px solid var(--line);}
+  .foot .big{font-family:var(--serif);font-size:24px;}
+  .foot p{font-size:14px;color:var(--faint);margin-top:6px;max-width:42ch;margin-left:auto;margin-right:auto;}
+
+  .sandybar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(252,250,244,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line-2);padding:14px 20px calc(14px + env(safe-area-inset-bottom));}
+  .sinner{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:14px;justify-content:center;}
+  .smic{flex:none;width:48px;height:48px;border-radius:50%;background:var(--terra);display:flex;align-items:center;justify-content:center;}
+  .smic span{width:14px;height:14px;border-radius:50%;background:var(--bone-2);}
+  .stext{font-family:var(--serif);font-style:italic;font-size:19px;}
+  .stext small{display:block;font-family:var(--sans);font-style:normal;font-size:13px;color:var(--muted);}
+</style>
+</head>
+<body>
+<nav class="topnav"><a href="index.html">Conversation</a><a href="home.html">Mission Control</a><a href="catalog.html">Catalog</a><a href="board.html">A Project</a><a href="orders.html" class="on">Orders</a></nav>
+<div class="wrap">
+
+  <div class="crest">Dwyer Interiors</div>
+  <h1>Purchase Orders</h1>
+  <div class="sub">Every furniture &amp; finish order — drafted for you, in one place.</div>
+
+  <div class="summary">
+    <div class="stat"><b class="accent">3</b><span class="accent">drafts awaiting your OK</span></div>
+    <div class="stat"><b>5</b><span>sent &amp; in production</span></div>
+    <div class="stat"><b>2</b><span>backordered</span></div>
+    <div class="stat"><b>$272k</b><span>ordered to date</span></div>
+  </div>
+
+  <div class="promise"><b>Nothing is ever ordered without your sign-off.</b> Sandy drafts every PO — price, vendor, quantities, where it goes. You tap approve, and only then does it leave.</div>
+
+  <div class="h2">Drafted &mdash; waiting on you</div>
+
+  <div class="po draft">
+    <div class="potop"><div class="povendor">Maharam</div><div class="ponum">Draft PO &middot; Memorial Surgery Center</div></div>
+    <div class="poitem">Mode panel textile, &lsquo;Beach&rsquo; &mdash; 40 yds</div>
+    <div class="pometa">Goes: reception &amp; sub-wait &middot; rep Marcus &middot; lead time ~3 wks</div>
+    <div class="pmeta-row"><div class="pototal">$4,280</div><span class="badge draft">Awaiting your OK</span></div>
+    <div class="acts"><span class="act go">Approve &amp; send</span><span class="act">Review draft</span><span class="act hold">Hold</span></div>
+  </div>
+
+  <div class="po draft">
+    <div class="potop"><div class="povendor">Sherwin-Williams</div><div class="ponum">Draft PO &middot; Memorial Surgery Center</div></div>
+    <div class="poitem">SW 7036 Accessible Beige &mdash; 12 gal, scrubbable</div>
+    <div class="pometa">Goes: all corridors &middot; healthcare palette</div>
+    <div class="pmeta-row"><div class="pototal">$612</div><span class="badge draft">Awaiting your OK</span></div>
+    <div class="acts"><span class="act go">Approve &amp; send</span><span class="act">Review draft</span><span class="act hold">Hold</span></div>
+  </div>
+
+  <div class="po draft">
+    <div class="potop"><div class="povendor">Herman Miller</div><div class="ponum">Draft PO &middot; Caldwell Ranch Lodge</div></div>
+    <div class="poitem">Great-room lounge seating &mdash; 8 pieces, leather</div>
+    <div class="pometa">Goes: lodge great room &middot; rep Marcus &middot; Charlene reviews leather in person first</div>
+    <div class="pmeta-row"><div class="pototal">$18,400</div><span class="badge draft">Awaiting your OK</span></div>
+    <div class="acts"><span class="act go">Approve &amp; send</span><span class="act">Review draft</span><span class="act hold">Hold</span></div>
+  </div>
+
+  <div class="h2">Sent &mdash; in production</div>
+
+  <div class="po">
+    <div class="potop"><div class="povendor">Steelcase</div><div class="ponum">PO #4471 &middot; Memorial Surgery Center</div></div>
+    <div class="poitem">Series 1 task chairs &mdash; Qty 24</div>
+    <div class="pometa">Goes: nurse stations &amp; recovery &middot; rep Dana &middot; ETA Jul 2 &middot; install Hidalgo</div>
+    <div class="pmeta-row"><div class="pototal">$11,760</div><span class="badge">Ordered Jun 9</span></div>
+    <div class="acts"><span class="act">View PO</span><span class="act">Track</span></div>
+  </div>
+
+  <div class="po">
+    <div class="potop"><div class="povendor">Herman Miller</div><div class="ponum">PO #4472 &middot; Memorial Surgery Center</div></div>
+    <div class="poitem">Reception lounge seating &mdash; Qty 6</div>
+    <div class="pometa">Goes: main reception &middot; rep Marcus &middot; ETA Jul 8</div>
+    <div class="pmeta-row"><div class="pototal">$22,900</div><span class="badge">Ordered Jun 9</span></div>
+    <div class="acts"><span class="act">View PO</span><span class="act">Track</span></div>
+  </div>
+
+  <div class="po ship">
+    <div class="potop"><div class="povendor">Herman Miller</div><div class="ponum">PO #4465 &middot; Memorial Surgery Center</div></div>
+    <div class="poitem">Nurse-station casework &mdash; 1 lot, made to dimension</div>
+    <div class="pometa">Goes: central nurse station &middot; tracking 1Z A47 884 471</div>
+    <div class="pmeta-row"><div class="pototal">$31,500</div><span class="badge ship">Shipped &middot; arrives Jun 16</span></div>
+    <div class="acts"><span class="act">View PO</span><span class="act">Track</span></div>
+  </div>
+
+  <div class="h2">Needs a watch &mdash; backordered</div>
+
+  <div class="po draft">
+    <div class="potop"><div class="povendor">Mannington</div><div class="ponum">PO #4468 &middot; Memorial Surgery Center</div></div>
+    <div class="poitem">Aspecta LVT flooring &mdash; 1,800 sf, OR suite</div>
+    <div class="pometa">Goes: both ORs &middot; rep Lena &middot; revised ETA Jul 21</div>
+    <div class="pmeta-row"><div class="pototal">$14,200</div><span class="badge draft">Backordered</span></div>
+    <div class="acts"><span class="act">View PO</span><span class="act hold">Call Lena</span></div>
+  </div>
+
+  <div class="po done">
+    <div class="potop"><div class="povendor">Mannington</div><div class="ponum">PO #4460 &middot; Memorial Surgery Center</div></div>
+    <div class="poitem">Rubber base &mdash; whole suite</div>
+    <div class="pometa">Installed Jun 6 by Hidalgo &middot; signed off</div>
+    <div class="pmeta-row"><div class="pototal">$3,900</div><span class="badge done">Delivered</span></div>
+    <div class="acts"><span class="act">View PO</span></div>
+  </div>
+
+  <div class="foot">
+    <div class="big">Sandy drafts. You approve. The paperwork stops eating your nights.</div>
+    <p>Sample data, made to show the idea. The real version drafts POs from a product list and ties every one to QuickBooks.</p>
+  </div>
+
+</div>
+
+<div class="sandybar">
+  <div class="sinner">
+    <div class="smic"><span></span></div>
+    <div class="stext">&ldquo;Sandy, approve the Maharam and the paint &mdash; hold the lodge leather till I see it.&rdquo;<small>Approve, hold, or change any order by voice &middot; from your iPad or phone</small></div>
+  </div>
+</div>
+</body>
+</html>

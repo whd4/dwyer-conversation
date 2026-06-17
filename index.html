@@ -11,10 +11,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bone:#F4EEE2; --bone-2:#FBF7EE; --card:#FCFAF4;
-    --ink:#2C2722; --muted:#6E655A; --faint:#9A9081;
-    --brass:#A97E45; --sage:#8C9A78; --terra:#C0674A;
-    --line:#E6DCCB; --line-2:#D8CCB6;
+    --bone:#F6F6F3; --bone-2:#FCFCFA; --card:#FFFFFF;
+    --ink:#1F2024; --muted:#6A6C72; --faint:#9DA0A6;
+    --brass:#6F8069; --sage:#6F8069; --terra:#C2795F;
+    --line:#E7E7E3; --line-2:#D9D9D3;
     --serif:'Cormorant Garamond','Iowan Old Style',Palatino,Georgia,serif;
     --sans:'Outfit',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   }
@@ -39,6 +39,9 @@
   .begin{font-family:var(--sans);font-weight:400;font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:var(--bone-2);background:var(--brass);border:none;padding:18px 42px;border-radius:2px;cursor:pointer;}
   .begin:active{opacity:.8;}
   .scrollhint{margin-top:34px;font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);}
+  .contactline{margin-top:22px;font-size:14.5px;letter-spacing:.05em;color:var(--muted);line-height:1.9;}
+  .contactline a{color:var(--brass);text-decoration:none;}
+  .contactline .sep{color:var(--line-2);margin:0 8px;}
 
   /* BODY */
   .note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--brass);padding:26px 28px;margin:34px 0;border-radius:3px;}
@@ -77,7 +80,7 @@
 </head>
 <body>
 
-<nav class="topnav"><a href="index.html" class="on">Conversation</a><a href="home.html">Mission Control</a><a href="catalog.html">Catalog</a><a href="board.html">A Project</a></nav>
+<nav class="topnav"><a href="index.html" class="on">Conversation</a><a href="home.html">Mission Control</a><a href="catalog.html">Catalog</a><a href="board.html">A Project</a><a href="orders.html">Orders</a></nav>
 
 <header class="cover" id="cover">
   <div class="crest">Dwyer Interiors</div>
@@ -88,13 +91,14 @@
   <div class="frm">No typing, no computer. Just tap record and talk — at your pace, as much or as little as you like.</div>
   <button class="begin" onclick="begin()">Begin when you're ready</button>
   <div class="scrollhint">Read along &middot; talk it through &middot; come and go anytime</div>
+  <div class="contactline">Houston, Texas<span class="sep">&middot;</span><a href="tel:17137808989">713&thinsp;&middot;&thinsp;780&thinsp;&middot;&thinsp;8989</a><span class="sep">&middot;</span><a href="mailto:cdwyer@dwyerinteriors.com">cdwyer@dwyerinteriors.com</a></div>
 </header>
 
 <main class="wrap hidden" id="main">
 
   <div class="note">
     <div class="from">A note, Mom —</div>
-    <p>I'm not trying to change how you design, or put your name on billboards. I just want to find the boring, repetitive parts that eat your nights at the desk — and let a system handle those, with you approving everything — so you can say yes to more of the work you actually want. No typing: tap the red button at the bottom, talk through whatever you feel like, and pause whenever. If it's easier to sketch something, draw it and we'll snap a photo. We'll do a little tonight and finish at the office.</p>
+    <p>You've been winding the firm down — turning good work away because there's only one of you. I want to flip that. The idea: hand the boring, repeatable parts — the POs, the order tracking, the paperwork that eats your evenings — to a system that does them <em>for</em> you, while you approve everything and keep doing the design you love. Less overhead, less time at the desk, and the work still moves. If it makes your life easier and the jobs still go out right, I want to offer the same thing to other designers — and you'd be the one who proved it works. So as you use it, tell me what helps and what gets in the way; your read on it is the whole point. No typing — tap the button below, talk through whatever you feel like, pause whenever. If a sketch is easier, draw it and we'll snap a photo. A little tonight, finish at the office.</p>
   </div>
 
   <section class="part" id="p1">
