@@ -230,9 +230,10 @@
     <div class="qi">Tap and talk — say whatever's on your mind. Or just tell Whitt.</div>
     <div class="voice">
       <button class="recbtn" id="recBtn" onclick="toggleRec()"><span class="d"></span><span id="recLabel">Tap to record a voice note</span><span class="rtime" id="recTime"></span></button>
+      <audio id="recAudio" class="hidden" controls style="width:100%;margin-top:14px;"></audio>
       <div class="rrow hidden" id="rrow">
-        <button class="rsmall" onclick="playBack()">&#9658; Play it back</button>
-        <a class="rsmall hidden" id="saveAudio" download="charlene-voice-note.m4a">&#8595; Save voice note</a>
+        <button class="rsmall" id="shareAudioBtn" onclick="shareAudio()">&#10514; Send voice note to Whitt</button>
+        <a class="rsmall hidden" id="saveAudio" download="charlene-voice-note.m4a">&#8595; Save to Files</a>
       </div>
       <div class="rstatus" id="recStatus"></div>
     </div>
@@ -343,22 +344,22 @@
     setTimeout(function(){ URL.revokeObjectURL(url); },1500);
   });
 
-  // voice note recorder (saves an audio clip; tap to talk, no typing)
-  var mediaRecorder,chunks=[],stream,startT,timer,blobURL;
+  // voice note recorder (records a clip; confirm inline; send via the iOS share sheet)
+  var mediaRecorder,chunks=[],stream,startT,timer,blobURL,lastFile=null,hasUnsaved=false;
   var recBtn=document.getElementById('recBtn'),recLabel=document.getElementById('recLabel'),
       recTime=document.getElementById('recTime'),recStatus=document.getElementById('recStatus'),
-      rrow=document.getElementById('rrow'),saveAudio=document.getElementById('saveAudio');
+      rrow=document.getElementById('rrow'),saveAudio=document.getElementById('saveAudio'),
+      recAudio=document.getElementById('recAudio');
   function fmt(s){var m=Math.floor(s/60),ss=s%60;return m+':'+(ss<10?'0':'')+ss;}
   function tick(){recTime.textContent=fmt(Math.floor((Date.now()-startT)/1000));}
   function toggleRec(){
     if(mediaRecorder&&mediaRecorder.state==='recording'){
       mediaRecorder.stop();clearInterval(timer);
       recBtn.classList.remove('on');recLabel.textContent='Tap to record again';
-      recStatus.textContent='Saved below — play it back, or save the voice note.';
       return;
     }
     if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||typeof MediaRecorder==='undefined'){
-      recStatus.textContent='This browser can’t record here — just tell Whitt.';return;
+      recStatus.textContent='This browser can’t record here — just tell Whitt, or use Voice Memos.';return;
     }
     navigator.mediaDevices.getUserMedia({audio:true}).then(function(s){
       stream=s;chunks=[];
@@ -366,10 +367,15 @@
       mediaRecorder.ondataavailable=function(e){if(e.data&&e.data.size>0)chunks.push(e.data);};
       mediaRecorder.onstop=function(){
         var type=(chunks[0]&&chunks[0].type)||'audio/mp4';
+        var ext=type.indexOf('webm')>-1?'webm':'m4a';
         var blob=new Blob(chunks,{type:type});
         if(blobURL)URL.revokeObjectURL(blobURL); blobURL=URL.createObjectURL(blob);
-        saveAudio.href=blobURL; saveAudio.download='charlene-voice-note'+(type.indexOf('webm')>-1?'.webm':'.m4a');
-        rrow.classList.remove('hidden'); saveAudio.classList.remove('hidden');
+        lastFile=new File([blob],'charlene-voice-note.'+ext,{type:type});
+        hasUnsaved=true;
+        recAudio.src=blobURL; recAudio.classList.remove('hidden');   // inline playback = proof it captured
+        saveAudio.href=blobURL; saveAudio.download='charlene-voice-note.'+ext;
+        rrow.classList.remove('hidden');
+        recStatus.textContent='Play it above to check it caught — then tap Send voice note to Whitt.';
         if(stream)stream.getTracks().forEach(function(t){t.stop();});
       };
       mediaRecorder.start(); startT=Date.now(); tick(); timer=setInterval(tick,1000);
@@ -379,7 +385,21 @@
       recStatus.textContent='Microphone is off. In Safari tap “aA” → Website Settings → allow Microphone — or just tell Whitt.';
     });
   }
-  function playBack(){if(blobURL){new Audio(blobURL).play();}}
+  // iOS-reliable: share the actual file via the system sheet (Messages/Mail/Files).
+  // <a download> is ignored by iOS Safari for blobs — that's why earlier clips vanished.
+  function shareAudio(){
+    if(!lastFile){return;}
+    if(navigator.canShare && navigator.canShare({files:[lastFile]})){
+      navigator.share({files:[lastFile],title:'Voice note for Whitt'})
+        .then(function(){hasUnsaved=false;recStatus.textContent='Sent — thank you.';})
+        .catch(function(){/* cancelled — clip is still here */});
+    } else {
+      saveAudio.classList.remove('hidden'); saveAudio.click(); hasUnsaved=false;
+      recStatus.textContent='Saved to your Downloads — text it to Whitt.';
+    }
+  }
+  // don't let an unsaved clip disappear on accidental navigation/refresh
+  window.addEventListener('beforeunload',function(e){ if(hasUnsaved){e.preventDefault();e.returnValue='';} });
 </script>
 </body>
 </html>
