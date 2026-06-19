@@ -240,10 +240,14 @@
 
   <!-- SEND -->
   <div class="sendwrap">
-    <a class="send dim" id="send" href="#">Send my answers to Whitt</a>
+    <button class="send dim" id="send" type="button" onclick="sendAnswers()">Send my answers to Whitt</button>
     <a class="send2" id="savefile" href="#">&#128229; Or save my answers as a file</a>
-    <div class="foot">That's it — thank you, Mom.<br><b>Send</b> emails your answers straight to Whitt. <b>Save as a file</b> drops them in your iPad's <b>Files &rarr; Downloads</b> to email later.<br>Saved a voice note? Tap <b>Save voice note</b> and text it to Whitt too.</div>
+    <div class="foot">That's it — thank you, Mom.<br><b>Send</b> delivers your answers straight to Whitt — nothing else to do.<br>Saved a voice note? Tap <b>Save voice note</b> and text it to Whitt too.</div>
     <a class="tour" href="index.html">&larr; Or look around at what the system does</a>
+    <div id="done" class="hidden" style="margin-top:22px;background:var(--sage-fill);border:1px solid var(--line);border-left:3px solid var(--sage);border-radius:4px;padding:22px 24px;text-align:center;">
+      <div style="font-family:var(--serif);font-style:italic;font-size:22px;color:var(--sage);margin-bottom:6px;">Sent — thank you, Mom.</div>
+      <p style="font-size:17px;line-height:1.7;color:var(--ink);margin:0;">Your answers are on their way to Whitt. There's nothing else you need to do.<br>If you recorded a voice note, tap <b>Save voice note</b> above and text it to him too.</p>
+    </div>
   </div>
 </main>
 
@@ -280,13 +284,43 @@
     return lines;
   }
 
+  // Auto-return: paste your free Web3Forms key below (web3forms.com -> enter whittdwyer@gmail.com -> copy the key).
+  // Until then it falls back to the iPad share sheet / Mail so nothing is ever broken.
+  var W3KEY = "PASTE_WEB3FORMS_KEY_HERE";
+
   function updateSend(){
-    var lines=collect(); var send=document.getElementById('send');
-    if(lines.length){
-      var body=encodeURIComponent("Mom's answers:\n\n"+lines.join('\n')+"\n\n(From the Dwyer Interiors iPad page)");
-      send.href="mailto:whittdwyer@gmail.com?subject="+encodeURIComponent("Mom's answers — Dwyer Interiors")+"&body="+body;
-      send.classList.remove('dim');
-    } else { send.href="#"; send.classList.add('dim'); }
+    var send=document.getElementById('send');
+    if(collect().length){ send.classList.remove('dim'); } else { send.classList.add('dim'); }
+  }
+
+  function answersText(){
+    return "Mom's answers:\n\n"+collect().join('\n')+"\n\n(From the Dwyer Interiors iPad page)";
+  }
+  function showDone(){
+    var d=document.getElementById('done'); d.classList.remove('hidden');
+    d.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  function mailtoFallback(text){
+    window.location.href="mailto:whittdwyer@gmail.com?subject="+encodeURIComponent("Mom's answers — Dwyer Interiors")+"&body="+encodeURIComponent(text);
+    setTimeout(showDone,900);
+  }
+  function sendAnswers(){
+    if(!collect().length){ alert('Tap a few answers first, then send.'); return; }
+    var text=answersText(), send=document.getElementById('send');
+    if(W3KEY && W3KEY.indexOf('PASTE')<0){
+      var label=send.textContent; send.textContent='Sending…';
+      fetch('https://api.web3forms.com/submit',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({access_key:W3KEY,subject:"Mom's answers — Dwyer Interiors",from_name:"Dwyer Interiors intake",message:text})
+      }).then(function(r){return r.json();}).then(function(j){
+        if(j&&j.success){ showDone(); } else { send.textContent=label; mailtoFallback(text); }
+      }).catch(function(){ send.textContent=label; mailtoFallback(text); });
+    } else if(navigator.share){
+      navigator.share({title:"Mom's answers — Dwyer Interiors",text:text}).then(showDone).catch(function(){ mailtoFallback(text); });
+    } else {
+      mailtoFallback(text);
+    }
   }
 
   function updateBar(){
